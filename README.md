@@ -3,9 +3,11 @@
 
 [About](#about) $\clubsuit$ [Framework](#framework) $\clubsuit$ [Requirements](#requirements) $\clubsuit$ [Getting started](#started) $\clubsuit$ [Contact](#contact)
 ## <a name='about'></a>About
-This repository is where the Chair of Transportation Systems (TSE) at Technical University of Munich (TUM) share the platform for dynamic traffic assignment (DTA) and network calibration integrating with Simulation of Urban MObility (SUMO) and the car-following model calibration platform.
+This repository is where the [Chair of Transportation Systems (TSE)](https://www.mos.ed.tum.de/en/vvs/home/) at [Technical University of Munich (TUM)](https://www.tum.de/en/) share the platform for dynamic traffic assignment (DTA) and network calibration integrating with [Simulation of Urban MObility (SUMO)](https://sumo.dlr.de/docs/index.html) and the car-following model calibration platform.
 
 By making this repository open source, the goal is to motivate more scholars participating in the research domain of transportation model calibration.
+
+To find out more details about this toolbox, see the following 
 
 If you are using these platforms in your work, please cite the following articles: <font color='red'>to be filled out</font>
 
