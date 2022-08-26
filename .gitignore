@@ -1,0 +1,6 @@
+# the folder `temp` should be ignored
+networks/
+network_aggregate/
+
+# data files
+*.csv
