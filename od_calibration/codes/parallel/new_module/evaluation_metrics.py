@@ -51,3 +51,4 @@ def normalized_root_mean_square(data_true, data_simulated, od_prior, od_calibrat
     rmsn = (1-w)*rmsn_count.values + w*rmsn_od.values
     rmsn = rmsn.tolist()
     return rmsn
+

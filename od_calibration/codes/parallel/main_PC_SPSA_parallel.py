@@ -15,7 +15,6 @@ import os
 from Functions import load_path, load_data, write_od, RSUMOStateInPar, SUMO_aver, gof_eval_od, create_Dm
 from Functions import generation_PC_SPSA as generation
 from Functions import rep_generation_PC_SPSA as rep_generation
-import platform
 #%%
 if __name__ == '__main__':
     network = 'Munich_MR'
