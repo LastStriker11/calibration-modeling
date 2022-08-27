@@ -5,7 +5,7 @@
 ## <a name='about'></a>About
 This repository is where the [Chair of Transportation Systems (TSE)](https://www.mos.ed.tum.de/en/vvs/home/) at [Technical University of Munich (TUM)](https://www.tum.de/en/) share the platform for dynamic traffic assignment (DTA) and network calibration integrating with [Simulation of Urban MObility (SUMO)](https://sumo.dlr.de/docs/index.html) and the car-following model calibration platform.
 
-By making this repository open source, the goal is to motivate more scholars participating in the research domain of transportation model calibration.
+By making this repository open source, the goal is to help the calibration of network OD matrices and car-following models, make the performance comparison among calibration models convenient, and motivate more scholars participating in the research domain of transportation model calibration.
 
 To find out more details about this toolbox, see the following 
 
