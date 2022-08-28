@@ -1,6 +1,7 @@
-# the folder `temp` should be ignored
+# network and cache
 networks/
 network_aggregate/
+od_calibration/cache/
 
 # data files
 *.csv

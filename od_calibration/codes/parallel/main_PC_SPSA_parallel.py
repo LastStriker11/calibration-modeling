@@ -142,7 +142,6 @@ if __name__ == '__main__':
                 Best_OD.iloc[:,2+inter] = OD_min.iloc[:,2+inter]
                 Best_RMSN[inter] = y_min[inter]
                 Best_SimulatedCounts.iloc[:,inter] = data_simulated.iloc[:,inter]
-        
     
     print(rmsn)
     end = time.time()
