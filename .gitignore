@@ -5,3 +5,6 @@ od_calibration/cache/
 
 # data files
 *.csv
+
+# python
+*/__pycache__/

@@ -1,0 +1,1137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>calibration_algorithms API documentation</title>
+<meta name="description" content="Includes popular and practical calibration algorithms for large-scale networks/problems.
+Currently, only PC-SPSA (principal component analysis - …" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>calibration_algorithms</code></h1>
+</header>
+<section id="section-intro">
+<p>Includes popular and practical calibration algorithms for large-scale networks/problems.
+Currently, only PC-SPSA (principal component analysis - simultaneous perturbation stochastic appproximation) is supported.</p>
+<p>@author: Qing-Long Lu (qinglong.lu@tum.de)</p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python"># -*- coding: utf-8 -*-
+&#34;&#34;&#34;
+Includes popular and practical calibration algorithms for large-scale networks/problems.
+Currently, only PC-SPSA (principal component analysis - simultaneous perturbation stochastic appproximation) is supported.
+
+@author: Qing-Long Lu (qinglong.lu@tum.de)
+&#34;&#34;&#34;
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import os
+import time
+from pathos.multiprocessing import ProcessingPool as PPool
+from pathos.multiprocessing import ThreadingPool as TPool
+
+from sumo_operation import SUMOOperation
+from evaluation_metrics import normalized_root_mean_square as rmsn
+
+class PC_SPSA(SUMOOperation):
+    def __init__(self, paths, sumo_var, paras, od_prior, data_true):
+        &#39;&#39;&#39;
+        Initialize a PC_SPSA calibration procedure.
+
+        Parameters
+        ----------
+        paths : dict
+            A dict of paths to SUMO, network, measurements, demand and cache.
+        sumo_var : dict
+            A dict of SUMO simulation setups.
+        paras : dict
+            A dict of algorithm parameters, e.g., `a` and `c`.
+        od_prior : DataFrame
+            A prior OD estimate.
+        data_true : DataFrame
+            Traffic measurements.
+
+        Returns
+        -------
+        None.
+
+        &#39;&#39;&#39;
+        self.paras = paras
+        self.od_prior = od_prior
+        self.data_true = data_true
+        super().__init__(paths=paths, sumo_var=sumo_var)
+    
+    def pc_spsa_perturb(self, ga, tmap):
+        &#39;&#39;&#39;
+        Implement parameters (i.e., OD matrix) perturbation.
+
+        Parameters
+        ----------
+        ga : int
+            An indicator of gradient sample.
+        tmap : TPool(int).map
+            A multiprocessing ThreadingPool method.
+
+        Returns
+        -------
+        None.
+
+        &#39;&#39;&#39;
+        start_sim = int(float(self.sumo_var[&#34;starttime&#34;]))
+        # build different folders for different generation
+        # if not os.path.exists(self.paths[&#39;cache&#39;]+str(ga)):
+        #     os.makedirs(self.paths[&#39;cache&#39;]+str(ga))
+        # self.paths[&#39;cache&#39;] = self.paths[&#39;cache&#39;]+str(ga)+&#39;/&#39;
+        
+        Deltas = []
+        OD_plus = pd.DataFrame()
+        for i in range(len(self.sumo_var[&#34;od_prior&#34;])):
+            
+            delta = 2*np.random.binomial(n=1, p=0.5, size=self.n_compon[i])-1 # Bernoulli distribution
+            # plus perturbation
+            z_per = self.z[i] + self.z[i]*self.ck*delta
+            temp_per = pd.DataFrame(np.matmul(self.V[i],z_per))
+            temp_per = pd.concat([self.od_prior.iloc[:,:2], temp_per], axis=1)
+            temp_per.columns = [&#39;from&#39;, &#39;to&#39;, &#39;counts&#39;]
+            temp_per.loc[self.index_same.iloc[:,i], &#39;counts&#39;] = self.od_prior.loc[self.index_same.iloc[:,i], start_sim+i*self.sumo_var[&#39;interval&#39;]]
+            index_neg = temp_per.loc[:,&#39;counts&#39;]&lt;3
+            temp_per.loc[index_neg, &#39;counts&#39;] = self.od_prior.loc[index_neg, start_sim+i*self.sumo_var[&#39;interval&#39;]]
+            OD_plus = pd.concat([OD_plus, temp_per[&#39;counts&#39;]], axis=1)
+            Deltas.append(delta)
+        OD_plus = pd.concat([self.od_prior.iloc[:,:2], OD_plus], axis=1)
+        COUNTER, seedNN_vector, GENERATION = self.write_od(OD_plus, ga)
+        tmap(self.sumo_run, COUNTER, seedNN_vector, GENERATION)
+        data_simulated = self.sumo_aver(ga)
+        y_plus = rmsn(self.data_true, data_simulated, self.od_prior, OD_plus, self.sumo_var[&#39;w&#39;])
+        
+        # minus perturbation
+        OD_minus = pd.DataFrame()
+        for i in range(len(self.sumo_var[&#34;od_prior&#34;])):
+            delta = Deltas[i] # Bernoulli distribution
+            # plus perturbation
+            z_per = self.z[i] - self.z[i]*self.ck*delta
+            temp_per = pd.DataFrame(np.matmul(self.V[i],z_per))
+            temp_per = pd.concat([self.od_prior.iloc[:,:2], temp_per], axis=1)
+            temp_per.columns = [&#39;from&#39;, &#39;to&#39;, &#39;counts&#39;]
+            temp_per.loc[self.index_same.iloc[:,i], &#39;counts&#39;] = self.od_prior.loc[self.index_same.iloc[:,i], start_sim+i*self.sumo_var[&#39;interval&#39;]]
+            index_neg = temp_per.loc[:,&#39;counts&#39;]&lt;3
+            temp_per.loc[index_neg, &#39;counts&#39;] = self.od_prior.loc[index_neg, start_sim+i*self.sumo_var[&#39;interval&#39;]]
+            OD_minus = pd.concat([OD_minus, temp_per[&#39;counts&#39;]], axis=1)
+        OD_minus = pd.concat([self.od_prior.iloc[:,:2], OD_minus], axis=1)
+        COUNTER, seedNN_vector, GENERATION = self.write_od(OD_minus, ga)
+        tmap(self.sumo_run, COUNTER, seedNN_vector, GENERATION)
+        data_simulated = self.sumo_aver(ga)
+    #    data_simulated = data_simulated.dropna(axis=0)
+        y_minus = rmsn(self.data_true, data_simulated, self.od_prior, OD_minus, self.sumo_var[&#39;w&#39;])
+        
+        # Gradient Evaluation
+        g_hat = pd.DataFrame()
+        for i in range(len(self.sumo_var[&#34;od_prior&#34;])):
+            temp_g = (y_plus[i] - y_minus[i])/(2*self.ck*Deltas[i])
+            g_hat = pd.concat([g_hat, pd.DataFrame(temp_g)], axis=1)
+        return g_hat
+    
+    def implement_pca(self, hist_od):
+        &#39;&#39;&#39;
+        Implement PCA on the historical OD matrix.
+
+        Returns
+        -------
+        None.
+
+        &#39;&#39;&#39;
+        V = []
+        z = []
+        n_compon = []
+        temp_U, temp_S, temp_V = np.linalg.svd(hist_od, full_matrices=False)
+        temp_cv = temp_S.cumsum()/temp_S.sum()
+        for temp_compon, score in enumerate(temp_cv): # find n_compon which can lead to a score &gt; 0.95
+            if score &gt; self.paras[&#39;variance&#39;]:
+                break
+        temp_V = temp_V[:temp_compon,:]
+        for i in range(len(self.sumo_var[&#34;od_prior&#34;])):
+            temp_z = np.matmul(temp_V, self.od_prior.iloc[:,i+2].values)
+            V.append(temp_V.T)
+            z.append(temp_z)
+            n_compon.append(temp_compon)
+            
+        self.index_same = self.od_prior.iloc[:,2:]&lt;5
+        self.V = V
+        self.z = z
+        self.n_compon = n_compon
+    
+    def create_history(self, hist_method, R, hist_days=100):
+        &#39;&#39;&#39;
+        Create a historical OD matrix for implementing the PC-SPSA algorithm for network/OD calibration.
+    
+        Parameters
+        ----------
+        hist_method : int
+            Method to generate the historical OD matrix.
+        R : list (three elements)
+            distribution factors for spatial, temporal and days correlations, respectively.
+        hist_days: int
+            Dimension of the historical OD matrix, i.e., how many days.
+    
+        Returns
+        -------
+        D_m : DataFrame
+            The historical OD matrix.
+    
+        &#39;&#39;&#39;
+        D_m = pd.DataFrame()
+        np.random.seed(1)
+        # method 1 Spatial correlation 
+        # method 2 Spatial + days correlation
+        if hist_method == 1 or hist_method == 2: 
+            for i in range(self.od_prior.shape[1]-2): # iterate over time intervals
+                od = self.od_prior.iloc[:,[0,1,i+2]]
+                if hist_method == 1:
+                    for d in range(hist_days):
+                        delta = np.random.normal(0, 0.333, size=(od.shape[0]))
+                        delta = delta.reshape(od.shape[0],1)
+                        if d == 0: 
+                            deltas = delta
+                        else:
+                            deltas = np.concatenate((deltas,delta),axis=1)
+                elif hist_method == 2:
+                    deltas = np.random.normal(0, 0.333, size=(od.shape[0], hist_days))   # one method without normal distribution hist_days
+                # dm formulation with OD pair colrrelation
+                factor = R[0]*deltas + np.ones(shape=(od.shape[0], hist_days))
+                temp_dm = pd.DataFrame(np.multiply(factor.T, od.iloc[:,2].values))
+                temp_dm = temp_dm.T
+                D_m = pd.concat([D_m, temp_dm], axis=1) # check axis
+            D_m = D_m.T
+        
+        # method 3 Temporal correlation 
+        # method 4 Temporal + days correlation
+        if hist_method == 3 or hist_method == 4:        
+            if hist_method == 4:
+                D = np.random.normal(0.5, 0.08325, size=(hist_days))
+            else:
+                D = [1] * hist_days
+            for d in D:
+                for i in range(self.od_prior.shape[0]): # iterate over OD pairs
+                    delta = np.random.normal(0, 0.333, size=(self.od_prior.shape[1]-2))
+                    delta = delta.reshape(self.od_prior.shape[1]-2,1)
+                    if i == 0: 
+                        deltas = delta
+                    else:
+                        deltas = np.concatenate ((deltas, delta),axis=1)       
+                deltas = deltas.T
+                factor = R[1]*d*deltas + np.ones(shape=(self.od_prior.shape[0], self.od_prior.shape[1]-2))
+                temp_dm = factor*self.od_prior.iloc[:,2:].values
+                temp_dm = pd.DataFrame(temp_dm)
+                temp_dm = temp_dm.T
+                D_m = pd.concat([D_m, temp_dm], axis=0) # check axis
+            
+            temp_dm = temp_dm.T
+    
+        # method 5 Spatial + temporal correlation
+        # method 6 Spatial + temporal + days correlation
+                
+        if hist_method == 5 or hist_method == 6: # create a rand_matrix with multiple normal distributions
+            if hist_method == 6:
+                D = np.random.normal(0.5, 0.08325, size=(hist_days))
+            else:
+                D = [1] * hist_days
+            for d in D:
+                deltas = np.random.normal(0, 0.333, size=(self.od_prior.shape[0],self.od_prior.shape[1]-2))
+                factor = min(R[:2])*d*deltas + np.ones(shape=(self.od_prior.shape[0], self.od_prior.shape[1]-2))
+                temp_dm = factor*self.od_prior.iloc[:,2:].values
+                temp_dm = pd.DataFrame(temp_dm)
+                temp_dm = temp_dm.T
+                D_m = pd.concat([D_m, temp_dm], axis=0) # check axis
+            
+            temp_dm = temp_dm.T
+                
+        return D_m
+    
+    def run(self, hist_od, n_iter=3):
+        &#39;&#39;&#39;
+        Run PC-SPSA for OD calibration.
+
+        Parameters
+        ----------
+        hist_od : DataFrame
+            The historical OD matrix.
+
+        Returns
+        -------
+        None.
+
+        &#39;&#39;&#39;
+        start = time.time()
+        start_sim = int(float(self.sumo_var[&#34;starttime&#34;]))
+        self.implement_pca(hist_od)
+        best_od = self.od_prior.copy()
+        best_metrics = [100]*(self.od_prior.shape[1]-2)
+        best_data = self.data_true.copy()
+        
+        convergence = [] # to store the metrics of each iteration
+        
+        n_sumo = self.sumo_var[&#39;n_sumo&#39;]
+        n_gen = self.paras[&#39;n_gen&#39;]
+        start_one = time.time()
+        
+        pamap = PPool(self.paras[&#39;n_gen&#39;]).amap # asynchronous processing
+        tmap = TPool(n_sumo).map # synachronous processing
+        COUNTER, seedNN_vector, GENERATION = self.write_od(self.od_prior, &#39;start&#39;)
+        
+        tmap(self.sumo_run, COUNTER, seedNN_vector, GENERATION)
+        #==============================&#39;&#39;&#39;
+        data_simulated = self.sumo_aver(&#39;start&#39;)
+    #    data_simulated.dropna(axis=0, inplace=True)
+        print(&#39;Simultaion 0 completed&#39;)
+        y = rmsn(self.data_true, data_simulated, self.od_prior, self.od_prior, self.sumo_var[&#39;w&#39;])
+        convergence.append(y)
+        end_one = time.time()
+        print(&#39;Starting RMSN = &#39;, y)
+        print(&#39;========================================&#39;)
+
+        for iteration in range(1, n_iter + 1):
+            # calculating gain sequence parameters
+            self.ak = self.paras[&#39;a&#39;] / ((iteration + self.paras[&#39;A&#39;]) ** self.paras[&#39;alpha&#39;])
+            self.ck = self.paras[&#39;c&#39;] / (iteration ** self.paras[&#39;gamma&#39;])
+            GA = list(range(0, n_gen))
+            # the &#39;outer&#39; parallel processing
+            G_hat = np.stack(pamap(self.pc_spsa_perturb, GA, [tmap]*n_gen).get(), axis=-1)
+            
+            g_hat_it = np.zeros((max(self.n_compon), len(self.sumo_var[&#34;od_prior&#34;])))
+            for i in range(n_gen):
+                temp_g = pd.DataFrame(G_hat[:,:,i])
+                g_hat_it = g_hat_it + temp_g
+            g_hat_it = pd.DataFrame(g_hat_it/n_gen).T
+            
+            # minimization
+            OD_min = pd.DataFrame()
+            for i in range(len(self.sumo_var[&#34;od_prior&#34;])):
+                g_hat = g_hat_it.iloc[i,:].dropna()
+                z_per = self.z[i] - np.multiply(self.z[i],(self.ak*g_hat.values))
+                temp_per = pd.DataFrame(np.matmul(self.V[i],z_per)) # temp per is the OD minimzied
+                temp_per = pd.concat([self.od_prior.iloc[:,:2], temp_per], axis=1)
+                temp_per.columns = [&#39;from&#39;, &#39;to&#39;, &#39;counts&#39;]
+                temp_per.loc[self.index_same.iloc[:,i], &#39;counts&#39;] = self.od_prior.loc[self.index_same.iloc[:,i], start_sim+i*self.sumo_var[&#39;interval&#39;]] # index_same is the index of ODs less than 5
+                index_neg = temp_per.loc[:,&#39;counts&#39;]&lt;3
+                temp_per.loc[index_neg, &#39;counts&#39;] = self.od_prior.loc[index_neg, start_sim+i*self.sumo_var[&#39;interval&#39;]]
+                OD_min = pd.concat([OD_min, temp_per[&#39;counts&#39;]], axis=1)
+                self.z[i] = z_per.copy()
+                
+            OD_min = pd.concat([self.od_prior.iloc[:,:2], OD_min], axis=1)
+            print(&#39;Simulation %d . minimization&#39; %(iteration))
+            COUNTER, seedNN_vector, GENERATION = self.write_od(OD_min, &#39;min&#39;)
+            tmap(self.sumo_run, COUNTER, seedNN_vector, GENERATION)
+            data_simulated = self.sumo_aver(&#39;min&#39;)
+            y_min = rmsn(self.data_true, data_simulated, self.od_prior, OD_min, self.sumo_var[&#39;w&#39;])
+            convergence.append(y_min)
+            
+            print(&#39;Iteration NO. %d done&#39; % iteration)
+            print(&#39;RMSN = &#39;, y_min)
+            print(&#39;Iterations remaining = %d&#39; % (n_iter-iteration))
+            print(&#39;========================================&#39;)
+            for inter in range(len(y_min)):
+                if y_min[inter] &lt; best_metrics[inter]:
+                    best_od.iloc[:,2+inter] = OD_min.iloc[:,2+inter]
+                    best_metrics[inter] = y_min[inter]
+                    best_data.iloc[:,inter] = data_simulated.iloc[:,inter]
+                    
+        print(convergence)
+        end = time.time()
+        print(&#39;Running time: %d s&#39; %(end-start))
+        print(&#39;Running time of one simulation: %d s&#39; %(end_one-start_one))
+
+        convergence = pd.DataFrame(convergence)
+        cols = []
+        for i in range(len(self.sumo_var[&#34;od_prior&#34;])):
+            cols.append(str(start_sim+i)+&#39;-&#39;+str(start_sim+i+1))
+        convergence.columns = cols
+    
+        plt.rcParams.update({&#39;figure.figsize&#39;:(8,8), &#39;figure.dpi&#39;:60, &#39;figure.autolayout&#39;: True})
+        plt.figure()
+        convergence.plot.line()
+        plt.title(&#39;Convergence plot&#39;)
+        plt.xlabel(&#34;Iterations&#34;)
+        plt.ylabel(&#34;RMSN&#34;)
+        plt.legend()
+        
+        return convergence, best_metrics, best_data, best_od</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="calibration_algorithms.PC_SPSA"><code class="flex name class">
+<span>class <span class="ident">PC_SPSA</span></span>
+<span>(</span><span>paths, sumo_var, paras, od_prior, data_true)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Initialize a PC_SPSA calibration procedure.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>paths</code></strong> :&ensp;<code>dict</code></dt>
+<dd>A dict of paths to SUMO, network, measurements, demand and cache.</dd>
+<dt><strong><code>sumo_var</code></strong> :&ensp;<code>dict</code></dt>
+<dd>A dict of SUMO simulation setups.</dd>
+<dt><strong><code>paras</code></strong> :&ensp;<code>dict</code></dt>
+<dd>A dict of algorithm parameters, e.g., <code>a</code> and <code>c</code>.</dd>
+<dt><strong><code>od_prior</code></strong> :&ensp;<code>DataFrame</code></dt>
+<dd>A prior OD estimate.</dd>
+<dt><strong><code>data_true</code></strong> :&ensp;<code>DataFrame</code></dt>
+<dd>Traffic measurements.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>None.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class PC_SPSA(SUMOOperation):
+    def __init__(self, paths, sumo_var, paras, od_prior, data_true):
+        &#39;&#39;&#39;
+        Initialize a PC_SPSA calibration procedure.
+
+        Parameters
+        ----------
+        paths : dict
+            A dict of paths to SUMO, network, measurements, demand and cache.
+        sumo_var : dict
+            A dict of SUMO simulation setups.
+        paras : dict
+            A dict of algorithm parameters, e.g., `a` and `c`.
+        od_prior : DataFrame
+            A prior OD estimate.
+        data_true : DataFrame
+            Traffic measurements.
+
+        Returns
+        -------
+        None.
+
+        &#39;&#39;&#39;
+        self.paras = paras
+        self.od_prior = od_prior
+        self.data_true = data_true
+        super().__init__(paths=paths, sumo_var=sumo_var)
+    
+    def pc_spsa_perturb(self, ga, tmap):
+        &#39;&#39;&#39;
+        Implement parameters (i.e., OD matrix) perturbation.
+
+        Parameters
+        ----------
+        ga : int
+            An indicator of gradient sample.
+        tmap : TPool(int).map
+            A multiprocessing ThreadingPool method.
+
+        Returns
+        -------
+        None.
+
+        &#39;&#39;&#39;
+        start_sim = int(float(self.sumo_var[&#34;starttime&#34;]))
+        # build different folders for different generation
+        # if not os.path.exists(self.paths[&#39;cache&#39;]+str(ga)):
+        #     os.makedirs(self.paths[&#39;cache&#39;]+str(ga))
+        # self.paths[&#39;cache&#39;] = self.paths[&#39;cache&#39;]+str(ga)+&#39;/&#39;
+        
+        Deltas = []
+        OD_plus = pd.DataFrame()
+        for i in range(len(self.sumo_var[&#34;od_prior&#34;])):
+            
+            delta = 2*np.random.binomial(n=1, p=0.5, size=self.n_compon[i])-1 # Bernoulli distribution
+            # plus perturbation
+            z_per = self.z[i] + self.z[i]*self.ck*delta
+            temp_per = pd.DataFrame(np.matmul(self.V[i],z_per))
+            temp_per = pd.concat([self.od_prior.iloc[:,:2], temp_per], axis=1)
+            temp_per.columns = [&#39;from&#39;, &#39;to&#39;, &#39;counts&#39;]
+            temp_per.loc[self.index_same.iloc[:,i], &#39;counts&#39;] = self.od_prior.loc[self.index_same.iloc[:,i], start_sim+i*self.sumo_var[&#39;interval&#39;]]
+            index_neg = temp_per.loc[:,&#39;counts&#39;]&lt;3
+            temp_per.loc[index_neg, &#39;counts&#39;] = self.od_prior.loc[index_neg, start_sim+i*self.sumo_var[&#39;interval&#39;]]
+            OD_plus = pd.concat([OD_plus, temp_per[&#39;counts&#39;]], axis=1)
+            Deltas.append(delta)
+        OD_plus = pd.concat([self.od_prior.iloc[:,:2], OD_plus], axis=1)
+        COUNTER, seedNN_vector, GENERATION = self.write_od(OD_plus, ga)
+        tmap(self.sumo_run, COUNTER, seedNN_vector, GENERATION)
+        data_simulated = self.sumo_aver(ga)
+        y_plus = rmsn(self.data_true, data_simulated, self.od_prior, OD_plus, self.sumo_var[&#39;w&#39;])
+        
+        # minus perturbation
+        OD_minus = pd.DataFrame()
+        for i in range(len(self.sumo_var[&#34;od_prior&#34;])):
+            delta = Deltas[i] # Bernoulli distribution
+            # plus perturbation
+            z_per = self.z[i] - self.z[i]*self.ck*delta
+            temp_per = pd.DataFrame(np.matmul(self.V[i],z_per))
+            temp_per = pd.concat([self.od_prior.iloc[:,:2], temp_per], axis=1)
+            temp_per.columns = [&#39;from&#39;, &#39;to&#39;, &#39;counts&#39;]
+            temp_per.loc[self.index_same.iloc[:,i], &#39;counts&#39;] = self.od_prior.loc[self.index_same.iloc[:,i], start_sim+i*self.sumo_var[&#39;interval&#39;]]
+            index_neg = temp_per.loc[:,&#39;counts&#39;]&lt;3
+            temp_per.loc[index_neg, &#39;counts&#39;] = self.od_prior.loc[index_neg, start_sim+i*self.sumo_var[&#39;interval&#39;]]
+            OD_minus = pd.concat([OD_minus, temp_per[&#39;counts&#39;]], axis=1)
+        OD_minus = pd.concat([self.od_prior.iloc[:,:2], OD_minus], axis=1)
+        COUNTER, seedNN_vector, GENERATION = self.write_od(OD_minus, ga)
+        tmap(self.sumo_run, COUNTER, seedNN_vector, GENERATION)
+        data_simulated = self.sumo_aver(ga)
+    #    data_simulated = data_simulated.dropna(axis=0)
+        y_minus = rmsn(self.data_true, data_simulated, self.od_prior, OD_minus, self.sumo_var[&#39;w&#39;])
+        
+        # Gradient Evaluation
+        g_hat = pd.DataFrame()
+        for i in range(len(self.sumo_var[&#34;od_prior&#34;])):
+            temp_g = (y_plus[i] - y_minus[i])/(2*self.ck*Deltas[i])
+            g_hat = pd.concat([g_hat, pd.DataFrame(temp_g)], axis=1)
+        return g_hat
+    
+    def implement_pca(self, hist_od):
+        &#39;&#39;&#39;
+        Implement PCA on the historical OD matrix.
+
+        Returns
+        -------
+        None.
+
+        &#39;&#39;&#39;
+        V = []
+        z = []
+        n_compon = []
+        temp_U, temp_S, temp_V = np.linalg.svd(hist_od, full_matrices=False)
+        temp_cv = temp_S.cumsum()/temp_S.sum()
+        for temp_compon, score in enumerate(temp_cv): # find n_compon which can lead to a score &gt; 0.95
+            if score &gt; self.paras[&#39;variance&#39;]:
+                break
+        temp_V = temp_V[:temp_compon,:]
+        for i in range(len(self.sumo_var[&#34;od_prior&#34;])):
+            temp_z = np.matmul(temp_V, self.od_prior.iloc[:,i+2].values)
+            V.append(temp_V.T)
+            z.append(temp_z)
+            n_compon.append(temp_compon)
+            
+        self.index_same = self.od_prior.iloc[:,2:]&lt;5
+        self.V = V
+        self.z = z
+        self.n_compon = n_compon
+    
+    def create_history(self, hist_method, R, hist_days=100):
+        &#39;&#39;&#39;
+        Create a historical OD matrix for implementing the PC-SPSA algorithm for network/OD calibration.
+    
+        Parameters
+        ----------
+        hist_method : int
+            Method to generate the historical OD matrix.
+        R : list (three elements)
+            distribution factors for spatial, temporal and days correlations, respectively.
+        hist_days: int
+            Dimension of the historical OD matrix, i.e., how many days.
+    
+        Returns
+        -------
+        D_m : DataFrame
+            The historical OD matrix.
+    
+        &#39;&#39;&#39;
+        D_m = pd.DataFrame()
+        np.random.seed(1)
+        # method 1 Spatial correlation 
+        # method 2 Spatial + days correlation
+        if hist_method == 1 or hist_method == 2: 
+            for i in range(self.od_prior.shape[1]-2): # iterate over time intervals
+                od = self.od_prior.iloc[:,[0,1,i+2]]
+                if hist_method == 1:
+                    for d in range(hist_days):
+                        delta = np.random.normal(0, 0.333, size=(od.shape[0]))
+                        delta = delta.reshape(od.shape[0],1)
+                        if d == 0: 
+                            deltas = delta
+                        else:
+                            deltas = np.concatenate((deltas,delta),axis=1)
+                elif hist_method == 2:
+                    deltas = np.random.normal(0, 0.333, size=(od.shape[0], hist_days))   # one method without normal distribution hist_days
+                # dm formulation with OD pair colrrelation
+                factor = R[0]*deltas + np.ones(shape=(od.shape[0], hist_days))
+                temp_dm = pd.DataFrame(np.multiply(factor.T, od.iloc[:,2].values))
+                temp_dm = temp_dm.T
+                D_m = pd.concat([D_m, temp_dm], axis=1) # check axis
+            D_m = D_m.T
+        
+        # method 3 Temporal correlation 
+        # method 4 Temporal + days correlation
+        if hist_method == 3 or hist_method == 4:        
+            if hist_method == 4:
+                D = np.random.normal(0.5, 0.08325, size=(hist_days))
+            else:
+                D = [1] * hist_days
+            for d in D:
+                for i in range(self.od_prior.shape[0]): # iterate over OD pairs
+                    delta = np.random.normal(0, 0.333, size=(self.od_prior.shape[1]-2))
+                    delta = delta.reshape(self.od_prior.shape[1]-2,1)
+                    if i == 0: 
+                        deltas = delta
+                    else:
+                        deltas = np.concatenate ((deltas, delta),axis=1)       
+                deltas = deltas.T
+                factor = R[1]*d*deltas + np.ones(shape=(self.od_prior.shape[0], self.od_prior.shape[1]-2))
+                temp_dm = factor*self.od_prior.iloc[:,2:].values
+                temp_dm = pd.DataFrame(temp_dm)
+                temp_dm = temp_dm.T
+                D_m = pd.concat([D_m, temp_dm], axis=0) # check axis
+            
+            temp_dm = temp_dm.T
+    
+        # method 5 Spatial + temporal correlation
+        # method 6 Spatial + temporal + days correlation
+                
+        if hist_method == 5 or hist_method == 6: # create a rand_matrix with multiple normal distributions
+            if hist_method == 6:
+                D = np.random.normal(0.5, 0.08325, size=(hist_days))
+            else:
+                D = [1] * hist_days
+            for d in D:
+                deltas = np.random.normal(0, 0.333, size=(self.od_prior.shape[0],self.od_prior.shape[1]-2))
+                factor = min(R[:2])*d*deltas + np.ones(shape=(self.od_prior.shape[0], self.od_prior.shape[1]-2))
+                temp_dm = factor*self.od_prior.iloc[:,2:].values
+                temp_dm = pd.DataFrame(temp_dm)
+                temp_dm = temp_dm.T
+                D_m = pd.concat([D_m, temp_dm], axis=0) # check axis
+            
+            temp_dm = temp_dm.T
+                
+        return D_m
+    
+    def run(self, hist_od, n_iter=3):
+        &#39;&#39;&#39;
+        Run PC-SPSA for OD calibration.
+
+        Parameters
+        ----------
+        hist_od : DataFrame
+            The historical OD matrix.
+
+        Returns
+        -------
+        None.
+
+        &#39;&#39;&#39;
+        start = time.time()
+        start_sim = int(float(self.sumo_var[&#34;starttime&#34;]))
+        self.implement_pca(hist_od)
+        best_od = self.od_prior.copy()
+        best_metrics = [100]*(self.od_prior.shape[1]-2)
+        best_data = self.data_true.copy()
+        
+        convergence = [] # to store the metrics of each iteration
+        
+        n_sumo = self.sumo_var[&#39;n_sumo&#39;]
+        n_gen = self.paras[&#39;n_gen&#39;]
+        start_one = time.time()
+        
+        pamap = PPool(self.paras[&#39;n_gen&#39;]).amap # asynchronous processing
+        tmap = TPool(n_sumo).map # synachronous processing
+        COUNTER, seedNN_vector, GENERATION = self.write_od(self.od_prior, &#39;start&#39;)
+        
+        tmap(self.sumo_run, COUNTER, seedNN_vector, GENERATION)
+        #==============================&#39;&#39;&#39;
+        data_simulated = self.sumo_aver(&#39;start&#39;)
+    #    data_simulated.dropna(axis=0, inplace=True)
+        print(&#39;Simultaion 0 completed&#39;)
+        y = rmsn(self.data_true, data_simulated, self.od_prior, self.od_prior, self.sumo_var[&#39;w&#39;])
+        convergence.append(y)
+        end_one = time.time()
+        print(&#39;Starting RMSN = &#39;, y)
+        print(&#39;========================================&#39;)
+
+        for iteration in range(1, n_iter + 1):
+            # calculating gain sequence parameters
+            self.ak = self.paras[&#39;a&#39;] / ((iteration + self.paras[&#39;A&#39;]) ** self.paras[&#39;alpha&#39;])
+            self.ck = self.paras[&#39;c&#39;] / (iteration ** self.paras[&#39;gamma&#39;])
+            GA = list(range(0, n_gen))
+            # the &#39;outer&#39; parallel processing
+            G_hat = np.stack(pamap(self.pc_spsa_perturb, GA, [tmap]*n_gen).get(), axis=-1)
+            
+            g_hat_it = np.zeros((max(self.n_compon), len(self.sumo_var[&#34;od_prior&#34;])))
+            for i in range(n_gen):
+                temp_g = pd.DataFrame(G_hat[:,:,i])
+                g_hat_it = g_hat_it + temp_g
+            g_hat_it = pd.DataFrame(g_hat_it/n_gen).T
+            
+            # minimization
+            OD_min = pd.DataFrame()
+            for i in range(len(self.sumo_var[&#34;od_prior&#34;])):
+                g_hat = g_hat_it.iloc[i,:].dropna()
+                z_per = self.z[i] - np.multiply(self.z[i],(self.ak*g_hat.values))
+                temp_per = pd.DataFrame(np.matmul(self.V[i],z_per)) # temp per is the OD minimzied
+                temp_per = pd.concat([self.od_prior.iloc[:,:2], temp_per], axis=1)
+                temp_per.columns = [&#39;from&#39;, &#39;to&#39;, &#39;counts&#39;]
+                temp_per.loc[self.index_same.iloc[:,i], &#39;counts&#39;] = self.od_prior.loc[self.index_same.iloc[:,i], start_sim+i*self.sumo_var[&#39;interval&#39;]] # index_same is the index of ODs less than 5
+                index_neg = temp_per.loc[:,&#39;counts&#39;]&lt;3
+                temp_per.loc[index_neg, &#39;counts&#39;] = self.od_prior.loc[index_neg, start_sim+i*self.sumo_var[&#39;interval&#39;]]
+                OD_min = pd.concat([OD_min, temp_per[&#39;counts&#39;]], axis=1)
+                self.z[i] = z_per.copy()
+                
+            OD_min = pd.concat([self.od_prior.iloc[:,:2], OD_min], axis=1)
+            print(&#39;Simulation %d . minimization&#39; %(iteration))
+            COUNTER, seedNN_vector, GENERATION = self.write_od(OD_min, &#39;min&#39;)
+            tmap(self.sumo_run, COUNTER, seedNN_vector, GENERATION)
+            data_simulated = self.sumo_aver(&#39;min&#39;)
+            y_min = rmsn(self.data_true, data_simulated, self.od_prior, OD_min, self.sumo_var[&#39;w&#39;])
+            convergence.append(y_min)
+            
+            print(&#39;Iteration NO. %d done&#39; % iteration)
+            print(&#39;RMSN = &#39;, y_min)
+            print(&#39;Iterations remaining = %d&#39; % (n_iter-iteration))
+            print(&#39;========================================&#39;)
+            for inter in range(len(y_min)):
+                if y_min[inter] &lt; best_metrics[inter]:
+                    best_od.iloc[:,2+inter] = OD_min.iloc[:,2+inter]
+                    best_metrics[inter] = y_min[inter]
+                    best_data.iloc[:,inter] = data_simulated.iloc[:,inter]
+                    
+        print(convergence)
+        end = time.time()
+        print(&#39;Running time: %d s&#39; %(end-start))
+        print(&#39;Running time of one simulation: %d s&#39; %(end_one-start_one))
+
+        convergence = pd.DataFrame(convergence)
+        cols = []
+        for i in range(len(self.sumo_var[&#34;od_prior&#34;])):
+            cols.append(str(start_sim+i)+&#39;-&#39;+str(start_sim+i+1))
+        convergence.columns = cols
+    
+        plt.rcParams.update({&#39;figure.figsize&#39;:(8,8), &#39;figure.dpi&#39;:60, &#39;figure.autolayout&#39;: True})
+        plt.figure()
+        convergence.plot.line()
+        plt.title(&#39;Convergence plot&#39;)
+        plt.xlabel(&#34;Iterations&#34;)
+        plt.ylabel(&#34;RMSN&#34;)
+        plt.legend()
+        
+        return convergence, best_metrics, best_data, best_od</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>sumo_operation.SUMOOperation</li>
+<li>preparation.DataPreparation</li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="calibration_algorithms.PC_SPSA.create_history"><code class="name flex">
+<span>def <span class="ident">create_history</span></span>(<span>self, hist_method, R, hist_days=100)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Create a historical OD matrix for implementing the PC-SPSA algorithm for network/OD calibration.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>hist_method</code></strong> :&ensp;<code>int</code></dt>
+<dd>Method to generate the historical OD matrix.</dd>
+<dt><strong><code>R</code></strong> :&ensp;<code>list (three elements)</code></dt>
+<dd>distribution factors for spatial, temporal and days correlations, respectively.</dd>
+<dt><strong><code>hist_days</code></strong> :&ensp;<code>int</code></dt>
+<dd>Dimension of the historical OD matrix, i.e., how many days.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>D_m</code></strong> :&ensp;<code>DataFrame</code></dt>
+<dd>The historical OD matrix.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def create_history(self, hist_method, R, hist_days=100):
+    &#39;&#39;&#39;
+    Create a historical OD matrix for implementing the PC-SPSA algorithm for network/OD calibration.
+
+    Parameters
+    ----------
+    hist_method : int
+        Method to generate the historical OD matrix.
+    R : list (three elements)
+        distribution factors for spatial, temporal and days correlations, respectively.
+    hist_days: int
+        Dimension of the historical OD matrix, i.e., how many days.
+
+    Returns
+    -------
+    D_m : DataFrame
+        The historical OD matrix.
+
+    &#39;&#39;&#39;
+    D_m = pd.DataFrame()
+    np.random.seed(1)
+    # method 1 Spatial correlation 
+    # method 2 Spatial + days correlation
+    if hist_method == 1 or hist_method == 2: 
+        for i in range(self.od_prior.shape[1]-2): # iterate over time intervals
+            od = self.od_prior.iloc[:,[0,1,i+2]]
+            if hist_method == 1:
+                for d in range(hist_days):
+                    delta = np.random.normal(0, 0.333, size=(od.shape[0]))
+                    delta = delta.reshape(od.shape[0],1)
+                    if d == 0: 
+                        deltas = delta
+                    else:
+                        deltas = np.concatenate((deltas,delta),axis=1)
+            elif hist_method == 2:
+                deltas = np.random.normal(0, 0.333, size=(od.shape[0], hist_days))   # one method without normal distribution hist_days
+            # dm formulation with OD pair colrrelation
+            factor = R[0]*deltas + np.ones(shape=(od.shape[0], hist_days))
+            temp_dm = pd.DataFrame(np.multiply(factor.T, od.iloc[:,2].values))
+            temp_dm = temp_dm.T
+            D_m = pd.concat([D_m, temp_dm], axis=1) # check axis
+        D_m = D_m.T
+    
+    # method 3 Temporal correlation 
+    # method 4 Temporal + days correlation
+    if hist_method == 3 or hist_method == 4:        
+        if hist_method == 4:
+            D = np.random.normal(0.5, 0.08325, size=(hist_days))
+        else:
+            D = [1] * hist_days
+        for d in D:
+            for i in range(self.od_prior.shape[0]): # iterate over OD pairs
+                delta = np.random.normal(0, 0.333, size=(self.od_prior.shape[1]-2))
+                delta = delta.reshape(self.od_prior.shape[1]-2,1)
+                if i == 0: 
+                    deltas = delta
+                else:
+                    deltas = np.concatenate ((deltas, delta),axis=1)       
+            deltas = deltas.T
+            factor = R[1]*d*deltas + np.ones(shape=(self.od_prior.shape[0], self.od_prior.shape[1]-2))
+            temp_dm = factor*self.od_prior.iloc[:,2:].values
+            temp_dm = pd.DataFrame(temp_dm)
+            temp_dm = temp_dm.T
+            D_m = pd.concat([D_m, temp_dm], axis=0) # check axis
+        
+        temp_dm = temp_dm.T
+
+    # method 5 Spatial + temporal correlation
+    # method 6 Spatial + temporal + days correlation
+            
+    if hist_method == 5 or hist_method == 6: # create a rand_matrix with multiple normal distributions
+        if hist_method == 6:
+            D = np.random.normal(0.5, 0.08325, size=(hist_days))
+        else:
+            D = [1] * hist_days
+        for d in D:
+            deltas = np.random.normal(0, 0.333, size=(self.od_prior.shape[0],self.od_prior.shape[1]-2))
+            factor = min(R[:2])*d*deltas + np.ones(shape=(self.od_prior.shape[0], self.od_prior.shape[1]-2))
+            temp_dm = factor*self.od_prior.iloc[:,2:].values
+            temp_dm = pd.DataFrame(temp_dm)
+            temp_dm = temp_dm.T
+            D_m = pd.concat([D_m, temp_dm], axis=0) # check axis
+        
+        temp_dm = temp_dm.T
+            
+    return D_m</code></pre>
+</details>
+</dd>
+<dt id="calibration_algorithms.PC_SPSA.implement_pca"><code class="name flex">
+<span>def <span class="ident">implement_pca</span></span>(<span>self, hist_od)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Implement PCA on the historical OD matrix.</p>
+<h2 id="returns">Returns</h2>
+<p>None.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def implement_pca(self, hist_od):
+    &#39;&#39;&#39;
+    Implement PCA on the historical OD matrix.
+
+    Returns
+    -------
+    None.
+
+    &#39;&#39;&#39;
+    V = []
+    z = []
+    n_compon = []
+    temp_U, temp_S, temp_V = np.linalg.svd(hist_od, full_matrices=False)
+    temp_cv = temp_S.cumsum()/temp_S.sum()
+    for temp_compon, score in enumerate(temp_cv): # find n_compon which can lead to a score &gt; 0.95
+        if score &gt; self.paras[&#39;variance&#39;]:
+            break
+    temp_V = temp_V[:temp_compon,:]
+    for i in range(len(self.sumo_var[&#34;od_prior&#34;])):
+        temp_z = np.matmul(temp_V, self.od_prior.iloc[:,i+2].values)
+        V.append(temp_V.T)
+        z.append(temp_z)
+        n_compon.append(temp_compon)
+        
+    self.index_same = self.od_prior.iloc[:,2:]&lt;5
+    self.V = V
+    self.z = z
+    self.n_compon = n_compon</code></pre>
+</details>
+</dd>
+<dt id="calibration_algorithms.PC_SPSA.pc_spsa_perturb"><code class="name flex">
+<span>def <span class="ident">pc_spsa_perturb</span></span>(<span>self, ga, tmap)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Implement parameters (i.e., OD matrix) perturbation.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>ga</code></strong> :&ensp;<code>int</code></dt>
+<dd>An indicator of gradient sample.</dd>
+<dt><strong><code>tmap</code></strong> :&ensp;<code>TPool(int).map</code></dt>
+<dd>A multiprocessing ThreadingPool method.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>None.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def pc_spsa_perturb(self, ga, tmap):
+    &#39;&#39;&#39;
+    Implement parameters (i.e., OD matrix) perturbation.
+
+    Parameters
+    ----------
+    ga : int
+        An indicator of gradient sample.
+    tmap : TPool(int).map
+        A multiprocessing ThreadingPool method.
+
+    Returns
+    -------
+    None.
+
+    &#39;&#39;&#39;
+    start_sim = int(float(self.sumo_var[&#34;starttime&#34;]))
+    # build different folders for different generation
+    # if not os.path.exists(self.paths[&#39;cache&#39;]+str(ga)):
+    #     os.makedirs(self.paths[&#39;cache&#39;]+str(ga))
+    # self.paths[&#39;cache&#39;] = self.paths[&#39;cache&#39;]+str(ga)+&#39;/&#39;
+    
+    Deltas = []
+    OD_plus = pd.DataFrame()
+    for i in range(len(self.sumo_var[&#34;od_prior&#34;])):
+        
+        delta = 2*np.random.binomial(n=1, p=0.5, size=self.n_compon[i])-1 # Bernoulli distribution
+        # plus perturbation
+        z_per = self.z[i] + self.z[i]*self.ck*delta
+        temp_per = pd.DataFrame(np.matmul(self.V[i],z_per))
+        temp_per = pd.concat([self.od_prior.iloc[:,:2], temp_per], axis=1)
+        temp_per.columns = [&#39;from&#39;, &#39;to&#39;, &#39;counts&#39;]
+        temp_per.loc[self.index_same.iloc[:,i], &#39;counts&#39;] = self.od_prior.loc[self.index_same.iloc[:,i], start_sim+i*self.sumo_var[&#39;interval&#39;]]
+        index_neg = temp_per.loc[:,&#39;counts&#39;]&lt;3
+        temp_per.loc[index_neg, &#39;counts&#39;] = self.od_prior.loc[index_neg, start_sim+i*self.sumo_var[&#39;interval&#39;]]
+        OD_plus = pd.concat([OD_plus, temp_per[&#39;counts&#39;]], axis=1)
+        Deltas.append(delta)
+    OD_plus = pd.concat([self.od_prior.iloc[:,:2], OD_plus], axis=1)
+    COUNTER, seedNN_vector, GENERATION = self.write_od(OD_plus, ga)
+    tmap(self.sumo_run, COUNTER, seedNN_vector, GENERATION)
+    data_simulated = self.sumo_aver(ga)
+    y_plus = rmsn(self.data_true, data_simulated, self.od_prior, OD_plus, self.sumo_var[&#39;w&#39;])
+    
+    # minus perturbation
+    OD_minus = pd.DataFrame()
+    for i in range(len(self.sumo_var[&#34;od_prior&#34;])):
+        delta = Deltas[i] # Bernoulli distribution
+        # plus perturbation
+        z_per = self.z[i] - self.z[i]*self.ck*delta
+        temp_per = pd.DataFrame(np.matmul(self.V[i],z_per))
+        temp_per = pd.concat([self.od_prior.iloc[:,:2], temp_per], axis=1)
+        temp_per.columns = [&#39;from&#39;, &#39;to&#39;, &#39;counts&#39;]
+        temp_per.loc[self.index_same.iloc[:,i], &#39;counts&#39;] = self.od_prior.loc[self.index_same.iloc[:,i], start_sim+i*self.sumo_var[&#39;interval&#39;]]
+        index_neg = temp_per.loc[:,&#39;counts&#39;]&lt;3
+        temp_per.loc[index_neg, &#39;counts&#39;] = self.od_prior.loc[index_neg, start_sim+i*self.sumo_var[&#39;interval&#39;]]
+        OD_minus = pd.concat([OD_minus, temp_per[&#39;counts&#39;]], axis=1)
+    OD_minus = pd.concat([self.od_prior.iloc[:,:2], OD_minus], axis=1)
+    COUNTER, seedNN_vector, GENERATION = self.write_od(OD_minus, ga)
+    tmap(self.sumo_run, COUNTER, seedNN_vector, GENERATION)
+    data_simulated = self.sumo_aver(ga)
+#    data_simulated = data_simulated.dropna(axis=0)
+    y_minus = rmsn(self.data_true, data_simulated, self.od_prior, OD_minus, self.sumo_var[&#39;w&#39;])
+    
+    # Gradient Evaluation
+    g_hat = pd.DataFrame()
+    for i in range(len(self.sumo_var[&#34;od_prior&#34;])):
+        temp_g = (y_plus[i] - y_minus[i])/(2*self.ck*Deltas[i])
+        g_hat = pd.concat([g_hat, pd.DataFrame(temp_g)], axis=1)
+    return g_hat</code></pre>
+</details>
+</dd>
+<dt id="calibration_algorithms.PC_SPSA.run"><code class="name flex">
+<span>def <span class="ident">run</span></span>(<span>self, hist_od, n_iter=3)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Run PC-SPSA for OD calibration.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>hist_od</code></strong> :&ensp;<code>DataFrame</code></dt>
+<dd>The historical OD matrix.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>None.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def run(self, hist_od, n_iter=3):
+    &#39;&#39;&#39;
+    Run PC-SPSA for OD calibration.
+
+    Parameters
+    ----------
+    hist_od : DataFrame
+        The historical OD matrix.
+
+    Returns
+    -------
+    None.
+
+    &#39;&#39;&#39;
+    start = time.time()
+    start_sim = int(float(self.sumo_var[&#34;starttime&#34;]))
+    self.implement_pca(hist_od)
+    best_od = self.od_prior.copy()
+    best_metrics = [100]*(self.od_prior.shape[1]-2)
+    best_data = self.data_true.copy()
+    
+    convergence = [] # to store the metrics of each iteration
+    
+    n_sumo = self.sumo_var[&#39;n_sumo&#39;]
+    n_gen = self.paras[&#39;n_gen&#39;]
+    start_one = time.time()
+    
+    pamap = PPool(self.paras[&#39;n_gen&#39;]).amap # asynchronous processing
+    tmap = TPool(n_sumo).map # synachronous processing
+    COUNTER, seedNN_vector, GENERATION = self.write_od(self.od_prior, &#39;start&#39;)
+    
+    tmap(self.sumo_run, COUNTER, seedNN_vector, GENERATION)
+    #==============================&#39;&#39;&#39;
+    data_simulated = self.sumo_aver(&#39;start&#39;)
+#    data_simulated.dropna(axis=0, inplace=True)
+    print(&#39;Simultaion 0 completed&#39;)
+    y = rmsn(self.data_true, data_simulated, self.od_prior, self.od_prior, self.sumo_var[&#39;w&#39;])
+    convergence.append(y)
+    end_one = time.time()
+    print(&#39;Starting RMSN = &#39;, y)
+    print(&#39;========================================&#39;)
+
+    for iteration in range(1, n_iter + 1):
+        # calculating gain sequence parameters
+        self.ak = self.paras[&#39;a&#39;] / ((iteration + self.paras[&#39;A&#39;]) ** self.paras[&#39;alpha&#39;])
+        self.ck = self.paras[&#39;c&#39;] / (iteration ** self.paras[&#39;gamma&#39;])
+        GA = list(range(0, n_gen))
+        # the &#39;outer&#39; parallel processing
+        G_hat = np.stack(pamap(self.pc_spsa_perturb, GA, [tmap]*n_gen).get(), axis=-1)
+        
+        g_hat_it = np.zeros((max(self.n_compon), len(self.sumo_var[&#34;od_prior&#34;])))
+        for i in range(n_gen):
+            temp_g = pd.DataFrame(G_hat[:,:,i])
+            g_hat_it = g_hat_it + temp_g
+        g_hat_it = pd.DataFrame(g_hat_it/n_gen).T
+        
+        # minimization
+        OD_min = pd.DataFrame()
+        for i in range(len(self.sumo_var[&#34;od_prior&#34;])):
+            g_hat = g_hat_it.iloc[i,:].dropna()
+            z_per = self.z[i] - np.multiply(self.z[i],(self.ak*g_hat.values))
+            temp_per = pd.DataFrame(np.matmul(self.V[i],z_per)) # temp per is the OD minimzied
+            temp_per = pd.concat([self.od_prior.iloc[:,:2], temp_per], axis=1)
+            temp_per.columns = [&#39;from&#39;, &#39;to&#39;, &#39;counts&#39;]
+            temp_per.loc[self.index_same.iloc[:,i], &#39;counts&#39;] = self.od_prior.loc[self.index_same.iloc[:,i], start_sim+i*self.sumo_var[&#39;interval&#39;]] # index_same is the index of ODs less than 5
+            index_neg = temp_per.loc[:,&#39;counts&#39;]&lt;3
+            temp_per.loc[index_neg, &#39;counts&#39;] = self.od_prior.loc[index_neg, start_sim+i*self.sumo_var[&#39;interval&#39;]]
+            OD_min = pd.concat([OD_min, temp_per[&#39;counts&#39;]], axis=1)
+            self.z[i] = z_per.copy()
+            
+        OD_min = pd.concat([self.od_prior.iloc[:,:2], OD_min], axis=1)
+        print(&#39;Simulation %d . minimization&#39; %(iteration))
+        COUNTER, seedNN_vector, GENERATION = self.write_od(OD_min, &#39;min&#39;)
+        tmap(self.sumo_run, COUNTER, seedNN_vector, GENERATION)
+        data_simulated = self.sumo_aver(&#39;min&#39;)
+        y_min = rmsn(self.data_true, data_simulated, self.od_prior, OD_min, self.sumo_var[&#39;w&#39;])
+        convergence.append(y_min)
+        
+        print(&#39;Iteration NO. %d done&#39; % iteration)
+        print(&#39;RMSN = &#39;, y_min)
+        print(&#39;Iterations remaining = %d&#39; % (n_iter-iteration))
+        print(&#39;========================================&#39;)
+        for inter in range(len(y_min)):
+            if y_min[inter] &lt; best_metrics[inter]:
+                best_od.iloc[:,2+inter] = OD_min.iloc[:,2+inter]
+                best_metrics[inter] = y_min[inter]
+                best_data.iloc[:,inter] = data_simulated.iloc[:,inter]
+                
+    print(convergence)
+    end = time.time()
+    print(&#39;Running time: %d s&#39; %(end-start))
+    print(&#39;Running time of one simulation: %d s&#39; %(end_one-start_one))
+
+    convergence = pd.DataFrame(convergence)
+    cols = []
+    for i in range(len(self.sumo_var[&#34;od_prior&#34;])):
+        cols.append(str(start_sim+i)+&#39;-&#39;+str(start_sim+i+1))
+    convergence.columns = cols
+
+    plt.rcParams.update({&#39;figure.figsize&#39;:(8,8), &#39;figure.dpi&#39;:60, &#39;figure.autolayout&#39;: True})
+    plt.figure()
+    convergence.plot.line()
+    plt.title(&#39;Convergence plot&#39;)
+    plt.xlabel(&#34;Iterations&#34;)
+    plt.ylabel(&#34;RMSN&#34;)
+    plt.legend()
+    
+    return convergence, best_metrics, best_data, best_od</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="calibration_algorithms.PC_SPSA" href="#calibration_algorithms.PC_SPSA">PC_SPSA</a></code></h4>
+<ul class="">
+<li><code><a title="calibration_algorithms.PC_SPSA.create_history" href="#calibration_algorithms.PC_SPSA.create_history">create_history</a></code></li>
+<li><code><a title="calibration_algorithms.PC_SPSA.implement_pca" href="#calibration_algorithms.PC_SPSA.implement_pca">implement_pca</a></code></li>
+<li><code><a title="calibration_algorithms.PC_SPSA.pc_spsa_perturb" href="#calibration_algorithms.PC_SPSA.pc_spsa_perturb">pc_spsa_perturb</a></code></li>
+<li><code><a title="calibration_algorithms.PC_SPSA.run" href="#calibration_algorithms.PC_SPSA.run">run</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>
