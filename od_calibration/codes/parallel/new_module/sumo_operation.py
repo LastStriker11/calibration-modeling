@@ -11,6 +11,21 @@ import subprocess
 
 class SUMOOperation(DataPreparation):
     def __init__(self, paths, sumo_var):
+        '''
+        Initialize a SUMOOperation object. This class inherits the functions from the DataPreparation class.
+
+        Parameters
+        ----------
+        paths : dict
+            A dict of paths to SUMO, network, measurements, demand and cache.
+        sumo_var : dict
+            A dict of SUMO simulation setups.
+
+        Returns
+        -------
+        None.
+
+        '''
         super().__init__(paths=paths, sumo_var=sumo_var)
 
     def write_od(self, od_matrix, ga):

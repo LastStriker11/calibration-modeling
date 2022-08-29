@@ -9,7 +9,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import os
 import time
-import pickle
 from pathos.multiprocessing import ProcessingPool as PPool
 from pathos.multiprocessing import ThreadingPool as TPool
 
