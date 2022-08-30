@@ -18,10 +18,10 @@ The platform design of the two platforms are provided below.
 
 The DTA model calibration platform is divided into four modules:
 
-- Paths and data preparation (`preparation.py`): help load the paths (e.g., path to the network) and data required (e.g., traffic measurements). For more details about the methods and attributes in this module, please refer to [its module page](od_calibration/doc/preparation.html).
-- Algorithms (`calibration_algorithms.py`): implementing the calibration procedure. ([module page](od_calibration/doc/calibration_algorithms.html))
-- SUMO simulations (`sumo_operation.py`): run SUMO simulation and aggregate the simulation outputs. ([module page](od_calibration/doc/sumo_operation.html))
-- Evaluation (`evaluation_metrics.py`): calculate the goodness-of-fit. ([module page](od_calibration/doc/evaluation_metrics.html))
+- Paths and data preparation (`preparation.py`): help load the paths (e.g., path to the network) and data required (e.g., traffic measurements). For more details about the methods and attributes in this module, please refer to [its module page](docs/preparation.html).
+- Algorithms (`calibration_algorithms.py`): implementing the calibration procedure. ([module page](docs/calibration_algorithms.html))
+- SUMO simulations (`sumo_operation.py`): run SUMO simulation and aggregate the simulation outputs. ([module page](docs/sumo_operation.html))
+- Evaluation (`evaluation_metrics.py`): calculate the goodness-of-fit. ([module page](docs/evaluation_metrics.html))
 
 ![DTA model calibration platform](images/dta_calibration_platform_design.png)
 
