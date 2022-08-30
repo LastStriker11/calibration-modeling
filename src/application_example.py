@@ -13,20 +13,9 @@ paths = dict(network='../networks/',
              sumo='D:/Sumo/',
              demand='../networks/demand/',
              measurements='../networks/measurements/',
-             cache='../cache/'
+             cache='../cache/',
              )
-
-paras = dict(n_gen=1,
-             a=1,
-             c=0.15,
-             A=25,
-             alpha=0.3,
-             gamma=0.15,
-             variance=70,
-             )
-             # n_iter=5,
-             # hist_method=6)
-
+             
 sumo_var = dict(network='network.net.xml',
                 tazname='taZes.taz.xml',
                 add_file='addition.add.xml',
@@ -35,6 +24,15 @@ sumo_var = dict(network='network.net.xml',
                 objective='counts',
                 interval=1,
                 )
+                
+paras = dict(n_gen=1,
+             a=1,
+             c=0.15,
+             A=25,
+             alpha=0.3,
+             gamma=0.15,
+             variance=70,
+             )
 
 # prepare paths and data
 dp = DataPreparation(paths, sumo_var)
