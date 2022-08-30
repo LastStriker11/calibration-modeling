@@ -16,12 +16,27 @@ The platform design of the two platforms are provided below.
 
 ### <a name='dta_platform'></a>DTA model Calibration platform
 
+The DTA model calibration platform is divided into four modules:
+
+- Paths and data preparation (`preparation.py`): help load the paths (e.g., path to the network) and data required (e.g., traffic measurements). For more details about the methods and attributes in this module, please refer to [its module page](od_calibration/html/preparation.html).
+- Algorithms (`calibration_algorithms.py`): implementing the calibration procedure. ([module page](od_calibration/html/calibration_algorithms.html))
+- SUMO simulations (`sumo_operation.py`): run SUMO simulation and aggregate the simulation outputs. ([module page](od_calibration/html/sumo_operation.html))
+- Evaluation (`evaluation_metrics.py`): calculate the goodness-of-fit. ([module page](od_calibration/html/evaluation_metrics.html))
+
+![DTA model calibration platform](images/dta_calibration_platform_design.png)
+
+Three dictionary variables has to be given to use this platform, including necessary paths, network setups, and algorithm variables. An application example for using this platform is given at `od_calibration/src/application_example.py`.
+
 ### <a name='car-following_platform'>Car-following model calibration platform
+
+The car-following mode calibration platform includes the following two modules:
+
+- Algorithms (`calibration_algorithms.py`): implementing the calibration procedure.
+- Evaluation (`evaluation_metrics.py`): calculate the goodness-of-fit.
 
 ## <a name='requirements'></a>Requirements
 
 ## <a name='started'></a>Getting started
 
 ## <a name='concat'></a>Contact
-
 

@@ -22,9 +22,77 @@ class DataPreparation(object):
         Parameters
         ----------
         paths : dict
-            A dict of paths to SUMO, network, measurements, demand and cache.
+            A dict of paths to SUMO, network, measurements, demand and cache, including:
+                <table>
+                    <thead>
+                        <tr>
+                            <th align="left">Variable</th>
+                            <th align="left">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>'sumo'</td>
+                            <td>path to the SUMO installation location.</td>
+                        </tr>
+                        <tr>
+                            <td>'network'</td>
+                            <td>path to the SUMO network files.</td>
+                        </tr>
+                        <tr>
+                            <td>'demand'</td>
+                            <td>path to the prior OD estimates in the [O-format (VISUM/VISSUM)](https://sumo.dlr.de/docs/Demand/Importing_O/D_Matrices.html).</td>
+                        </tr>
+                        <tr>
+                            <td>'measurements'</td>
+                            <td>path to the true traffic measurements (in `.csv` format).</td>
+                        </tr>
+                        <tr>
+                            <td>'cache'</td>
+                            <td>path to cache folder.</td>
+                        </tr>
+                    </tbody>
+                </table>
         sumo_var : dict
-            A dict of SUMO simulation setups.
+            A dict of SUMO simulation setups, including:
+                <table>
+                    <thead>
+                        <tr>
+                            <th align="left">Variable</th>
+                            <th align="left">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>'network'</td>
+                            <td>name of the network file.</td>
+                        </tr>
+                        <tr>
+                            <td>'tazname'</td>
+                            <td>name of the traffic analysis zone (TAZ) file.</td>
+                        </tr>
+                        <tr>
+                            <td>'add_file'</td>
+                            <td>name of the additional file, which includes the detectors information.</td>
+                        </tr>
+                        <tr>
+                            <td>'starttime'</td>
+                            <td>when the simulation should start.</td>
+                        </tr>
+                        <tr>
+                            <td>'endtime'</td>
+                            <td>when the simulation should stop.</td>
+                        </tr>
+                        <tr>
+                            <td>'objective'</td>
+                            <td>indicate the traffic measurements to use, 'counts' or 'time'.</td>
+                        </tr>
+                        <tr>
+                            <td>'interval'</td>
+                            <td>calibration interval (in common with the resolution of traffic measurements).</td>
+                        </tr>
+                    </tbody>
+                </table>
 
         Returns
         -------

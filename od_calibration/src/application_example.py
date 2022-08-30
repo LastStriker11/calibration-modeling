@@ -32,10 +32,8 @@ sumo_var = dict(network='network.net.xml',
                 add_file='addition.add.xml',
                 starttime='05.00',
                 endtime='07.00',
-                n_sumo=1,
                 objective='counts',
                 interval=1,
-                w=0.1
                 )
 
 # prepare paths and data
@@ -49,7 +47,7 @@ hist_od = calibrate.create_history(hist_method=6, R=[0.3,0.4,1])
 
 if __name__ == '__main__':
     # convergence, best_metrics, best_data, best_od
-    result = calibrate.run(hist_od, n_iter=2)
+    result = calibrate.run(hist_od, n_iter=2, n_sumo=1, w=0.1)
 
 
 

@@ -24,11 +24,118 @@ class PC_SPSA(SUMOOperation):
         Parameters
         ----------
         paths : dict
-            A dict of paths to SUMO, network, measurements, demand and cache.
+            A dict of paths to SUMO, network, measurements, demand and cache, including:
+                <table>
+                    <thead>
+                        <tr>
+                            <th align="left">Variable</th>
+                            <th align="left">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>'sumo'</td>
+                            <td>path to the SUMO installation location.</td>
+                        </tr>
+                        <tr>
+                            <td>'network'</td>
+                            <td>path to the SUMO network files.</td>
+                        </tr>
+                        <tr>
+                            <td>'demand'</td>
+                            <td>path to the prior OD estimates in the [O-format (VISUM/VISSUM)](https://sumo.dlr.de/docs/Demand/Importing_O/D_Matrices.html).</td>
+                        </tr>
+                        <tr>
+                            <td>'measurements'</td>
+                            <td>path to the true traffic measurements (in `.csv` format).</td>
+                        </tr>
+                        <tr>
+                            <td>'cache'</td>
+                            <td>path to cache folder.</td>
+                        </tr>
+                    </tbody>
+                </table>
         sumo_var : dict
-            A dict of SUMO simulation setups.
+            A dict of SUMO simulation setups, including:
+                <table>
+                    <thead>
+                        <tr>
+                            <th align="left">Variable</th>
+                            <th align="left">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>'network'</td>
+                            <td>name of the network file.</td>
+                        </tr>
+                        <tr>
+                            <td>'tazname'</td>
+                            <td>name of the traffic analysis zone (TAZ) file.</td>
+                        </tr>
+                        <tr>
+                            <td>'add_file'</td>
+                            <td>name of the additional file, which includes the detectors information.</td>
+                        </tr>
+                        <tr>
+                            <td>'starttime'</td>
+                            <td>when the simulation should start.</td>
+                        </tr>
+                        <tr>
+                            <td>'endtime'</td>
+                            <td>when the simulation should stop.</td>
+                        </tr>
+                        <tr>
+                            <td>'objective'</td>
+                            <td>indicate the traffic measurements to use, 'counts' or 'time'.</td>
+                        </tr>
+                        <tr>
+                            <td>'interval'</td>
+                            <td>calibration interval (in common with the resolution of traffic measurements).</td>
+                        </tr>
+                    </tbody>
+                </table>
         paras : dict
-            A dict of algorithm parameters, e.g., `a` and `c`.
+            A dict of algorithm parameters, including:
+                <table>
+                    <thead>
+                        <tr>
+                            <th align="left">Variable</th>
+                            <th align="left">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>'n_gen'</td>
+                            <td>number of gradient samples at each iteration.</td>
+                        </tr>
+                        <tr>
+                            <td>'a'</td>
+                            <td>step size at the minimization step of the SPSA algorithm.</td>
+                        </tr>
+                        <tr>
+                            <td>'c'</td>
+                            <td>step size at the perturbation step of the SPSA algorithm.</td>
+                        </tr>
+                        <tr>
+                            <td>'A'</td>
+                            <td>a SPSA parameter for adjusting *a* during the calibration.</td>
+                        </tr>
+                        <tr>
+                            <td>'alpha'</td>
+                            <td>a SPSA parameter for adjusting *a* during the calibration.</td>
+                        </tr>
+                        <tr>
+                            <td>'gamma'</td>
+                            <td>a SPSA parameter for adjusting *c* during the calibration.</td>
+                        </tr>
+                        <tr>
+                            <td>'variance'</td>
+                            <td>variance to keep after implementing PCA.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
         od_prior : DataFrame
             A prior OD estimate.
         data_true : DataFrame
@@ -43,6 +150,93 @@ class PC_SPSA(SUMOOperation):
         self.od_prior = od_prior
         self.data_true = data_true
         super().__init__(paths=paths, sumo_var=sumo_var)
+        
+    def create_history(self, hist_method, R, hist_days=100):
+        '''
+        Create a historical OD matrix for implementing the PC-SPSA algorithm for network/OD calibration.
+    
+        Parameters
+        ----------
+        hist_method : int
+            Method to generate the historical OD matrix.
+        R : list (three elements)
+            distribution factors for spatial, temporal and days correlations, respectively.
+        hist_days: int
+            Dimension of the historical OD matrix, i.e., how many days.
+    
+        Returns
+        -------
+        D_m : DataFrame
+            The historical OD matrix.
+    
+        '''
+        D_m = pd.DataFrame()
+        np.random.seed(1)
+        # method 1 Spatial correlation 
+        # method 2 Spatial + days correlation
+        if hist_method == 1 or hist_method == 2: 
+            for i in range(self.od_prior.shape[1]-2): # iterate over time intervals
+                od = self.od_prior.iloc[:,[0,1,i+2]]
+                if hist_method == 1:
+                    for d in range(hist_days):
+                        delta = np.random.normal(0, 0.333, size=(od.shape[0]))
+                        delta = delta.reshape(od.shape[0],1)
+                        if d == 0: 
+                            deltas = delta
+                        else:
+                            deltas = np.concatenate((deltas,delta),axis=1)
+                elif hist_method == 2:
+                    deltas = np.random.normal(0, 0.333, size=(od.shape[0], hist_days))   # one method without normal distribution hist_days
+                # dm formulation with OD pair colrrelation
+                factor = R[0]*deltas + np.ones(shape=(od.shape[0], hist_days))
+                temp_dm = pd.DataFrame(np.multiply(factor.T, od.iloc[:,2].values))
+                temp_dm = temp_dm.T
+                D_m = pd.concat([D_m, temp_dm], axis=1) # check axis
+            D_m = D_m.T
+        
+        # method 3 Temporal correlation 
+        # method 4 Temporal + days correlation
+        if hist_method == 3 or hist_method == 4:        
+            if hist_method == 4:
+                D = np.random.normal(0.5, 0.08325, size=(hist_days))
+            else:
+                D = [1] * hist_days
+            for d in D:
+                for i in range(self.od_prior.shape[0]): # iterate over OD pairs
+                    delta = np.random.normal(0, 0.333, size=(self.od_prior.shape[1]-2))
+                    delta = delta.reshape(self.od_prior.shape[1]-2,1)
+                    if i == 0: 
+                        deltas = delta
+                    else:
+                        deltas = np.concatenate ((deltas, delta),axis=1)       
+                deltas = deltas.T
+                factor = R[1]*d*deltas + np.ones(shape=(self.od_prior.shape[0], self.od_prior.shape[1]-2))
+                temp_dm = factor*self.od_prior.iloc[:,2:].values
+                temp_dm = pd.DataFrame(temp_dm)
+                temp_dm = temp_dm.T
+                D_m = pd.concat([D_m, temp_dm], axis=0) # check axis
+            
+            temp_dm = temp_dm.T
+    
+        # method 5 Spatial + temporal correlation
+        # method 6 Spatial + temporal + days correlation
+                
+        if hist_method == 5 or hist_method == 6: # create a rand_matrix with multiple normal distributions
+            if hist_method == 6:
+                D = np.random.normal(0.5, 0.08325, size=(hist_days))
+            else:
+                D = [1] * hist_days
+            for d in D:
+                deltas = np.random.normal(0, 0.333, size=(self.od_prior.shape[0],self.od_prior.shape[1]-2))
+                factor = min(R[:2])*d*deltas + np.ones(shape=(self.od_prior.shape[0], self.od_prior.shape[1]-2))
+                temp_dm = factor*self.od_prior.iloc[:,2:].values
+                temp_dm = pd.DataFrame(temp_dm)
+                temp_dm = temp_dm.T
+                D_m = pd.concat([D_m, temp_dm], axis=0) # check axis
+            
+            temp_dm = temp_dm.T
+                
+        return D_m    
     
     def pc_spsa_perturb(self, ga, tmap):
         '''
@@ -143,94 +337,7 @@ class PC_SPSA(SUMOOperation):
         self.z = z
         self.n_compon = n_compon
     
-    def create_history(self, hist_method, R, hist_days=100):
-        '''
-        Create a historical OD matrix for implementing the PC-SPSA algorithm for network/OD calibration.
-    
-        Parameters
-        ----------
-        hist_method : int
-            Method to generate the historical OD matrix.
-        R : list (three elements)
-            distribution factors for spatial, temporal and days correlations, respectively.
-        hist_days: int
-            Dimension of the historical OD matrix, i.e., how many days.
-    
-        Returns
-        -------
-        D_m : DataFrame
-            The historical OD matrix.
-    
-        '''
-        D_m = pd.DataFrame()
-        np.random.seed(1)
-        # method 1 Spatial correlation 
-        # method 2 Spatial + days correlation
-        if hist_method == 1 or hist_method == 2: 
-            for i in range(self.od_prior.shape[1]-2): # iterate over time intervals
-                od = self.od_prior.iloc[:,[0,1,i+2]]
-                if hist_method == 1:
-                    for d in range(hist_days):
-                        delta = np.random.normal(0, 0.333, size=(od.shape[0]))
-                        delta = delta.reshape(od.shape[0],1)
-                        if d == 0: 
-                            deltas = delta
-                        else:
-                            deltas = np.concatenate((deltas,delta),axis=1)
-                elif hist_method == 2:
-                    deltas = np.random.normal(0, 0.333, size=(od.shape[0], hist_days))   # one method without normal distribution hist_days
-                # dm formulation with OD pair colrrelation
-                factor = R[0]*deltas + np.ones(shape=(od.shape[0], hist_days))
-                temp_dm = pd.DataFrame(np.multiply(factor.T, od.iloc[:,2].values))
-                temp_dm = temp_dm.T
-                D_m = pd.concat([D_m, temp_dm], axis=1) # check axis
-            D_m = D_m.T
-        
-        # method 3 Temporal correlation 
-        # method 4 Temporal + days correlation
-        if hist_method == 3 or hist_method == 4:        
-            if hist_method == 4:
-                D = np.random.normal(0.5, 0.08325, size=(hist_days))
-            else:
-                D = [1] * hist_days
-            for d in D:
-                for i in range(self.od_prior.shape[0]): # iterate over OD pairs
-                    delta = np.random.normal(0, 0.333, size=(self.od_prior.shape[1]-2))
-                    delta = delta.reshape(self.od_prior.shape[1]-2,1)
-                    if i == 0: 
-                        deltas = delta
-                    else:
-                        deltas = np.concatenate ((deltas, delta),axis=1)       
-                deltas = deltas.T
-                factor = R[1]*d*deltas + np.ones(shape=(self.od_prior.shape[0], self.od_prior.shape[1]-2))
-                temp_dm = factor*self.od_prior.iloc[:,2:].values
-                temp_dm = pd.DataFrame(temp_dm)
-                temp_dm = temp_dm.T
-                D_m = pd.concat([D_m, temp_dm], axis=0) # check axis
-            
-            temp_dm = temp_dm.T
-    
-        # method 5 Spatial + temporal correlation
-        # method 6 Spatial + temporal + days correlation
-                
-        if hist_method == 5 or hist_method == 6: # create a rand_matrix with multiple normal distributions
-            if hist_method == 6:
-                D = np.random.normal(0.5, 0.08325, size=(hist_days))
-            else:
-                D = [1] * hist_days
-            for d in D:
-                deltas = np.random.normal(0, 0.333, size=(self.od_prior.shape[0],self.od_prior.shape[1]-2))
-                factor = min(R[:2])*d*deltas + np.ones(shape=(self.od_prior.shape[0], self.od_prior.shape[1]-2))
-                temp_dm = factor*self.od_prior.iloc[:,2:].values
-                temp_dm = pd.DataFrame(temp_dm)
-                temp_dm = temp_dm.T
-                D_m = pd.concat([D_m, temp_dm], axis=0) # check axis
-            
-            temp_dm = temp_dm.T
-                
-        return D_m
-    
-    def run(self, hist_od, n_iter=3):
+    def run(self, hist_od, n_iter=3, n_sumo=1, w=0.1):
         '''
         Run PC-SPSA for OD calibration.
 
@@ -253,7 +360,8 @@ class PC_SPSA(SUMOOperation):
         
         convergence = [] # to store the metrics of each iteration
         
-        n_sumo = self.sumo_var['n_sumo']
+        self.sumo_var['n_sumo'] = n_sumo
+        self.sumo_var['w'] = w
         n_gen = self.paras['n_gen']
         start_one = time.time()
         
@@ -266,7 +374,7 @@ class PC_SPSA(SUMOOperation):
         data_simulated = self.sumo_aver('start')
     #    data_simulated.dropna(axis=0, inplace=True)
         print('Simultaion 0 completed')
-        y = rmsn(self.data_true, data_simulated, self.od_prior, self.od_prior, self.sumo_var['w'])
+        y = rmsn(self.data_true, data_simulated, self.od_prior, self.od_prior, w)
         convergence.append(y)
         end_one = time.time()
         print('Starting RMSN = ', y)
@@ -305,7 +413,7 @@ class PC_SPSA(SUMOOperation):
             COUNTER, seedNN_vector, GENERATION = self.write_od(OD_min, 'min')
             tmap(self.sumo_run, COUNTER, seedNN_vector, GENERATION)
             data_simulated = self.sumo_aver('min')
-            y_min = rmsn(self.data_true, data_simulated, self.od_prior, OD_min, self.sumo_var['w'])
+            y_min = rmsn(self.data_true, data_simulated, self.od_prior, OD_min, w)
             convergence.append(y_min)
             
             print('Iteration NO. %d done' % iteration)
