@@ -1,6 +1,6 @@
 ## Custom Calibration and Modeling Toolkit
 
-This toolbox used to calibrate large-scale [SUMO](https://sumo.dlr.de/docs/index.html) networks 
+This toolbox is used to calibrate large-scale [SUMO](https://sumo.dlr.de/docs/index.html) networks 
 using state-of-the-art calibration algorithms. This toolbox is updated constantly 
 to include more algorithms, and allow more flexible simulation and network setups.
 
