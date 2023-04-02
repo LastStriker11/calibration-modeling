@@ -18,9 +18,9 @@ paths = dict(network='../networks/',
              
 sumo_var = dict(network='network.net.xml',
                 tazname='taZes.taz.xml',
-                add_file='addition.add.xml',
-                starttime='05.00',
-                endtime='07.00',
+                add_file='detectors.add.xml',
+                starttime='07.00',
+                endtime='08.00',
                 objective='counts',
                 interval=1,
                 )

@@ -208,6 +208,7 @@ class DataPreparation(object):
             od_prior = pd.concat([od_prior, temp_od.iloc[:,2]], axis=1)
         od_prior.columns = cols_inter
         od_prior = pd.concat([temp_od.iloc[:,:2], od_prior], axis=1)
+        data.index = data.index.astype(str) # in some networks, it could raise errors
         return data, od_prior
 
 

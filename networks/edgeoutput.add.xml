@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<additional xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/additional_file.xsd">    
+	<edgeData id="1" file="edge_data_300" freq="300.0"/>
+   	<edgeData id="2" file="edge_data_900" freq="900.0"/>
+   	<edgeData id="3" file="edge_data_3600" freq="3600.0"/> 
+</additional>

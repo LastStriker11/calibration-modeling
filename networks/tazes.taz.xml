@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 2022-06-06 11:10:53 by Eclipse SUMO netedit Version 1.13.0
+-->
+
+<additional xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/additional_file.xsd">
+    <!-- TAZs -->
+    <taz id="12_5" shape="5751.00,2251.00 6249.00,2251.00 6249.00,2749.00 5751.00,2749.00 5751.00,2251.00" color="255,46,0">
+        <tazSource id="-1286" weight="1.00"/>
+        <tazSink id="-1286" weight="1.00"/>
+        <tazSource id="-5091" weight="1.00"/>
+        <tazSink id="-5091" weight="1.00"/>
+        <tazSource id="1286" weight="1.00"/>
+        <tazSink id="1286" weight="1.00"/>
+        <tazSource id="5091" weight="1.00"/>
+        <tazSink id="5091" weight="1.00"/>
+    </taz>
+    <taz id="13_16" shape="6251.00,7751.00 6749.00,7751.00 6749.00,8249.00 6251.00,8249.00 6251.00,7751.00" color="40,255,0">
+        <tazSource id="-5868" weight="1.00"/>
+        <tazSink id="-5868" weight="1.00"/>
+        <tazSource id="5868" weight="1.00"/>
+        <tazSink id="5868" weight="1.00"/>
+    </taz>
+    <taz id="14_7" shape="6751.00,3251.00 7249.00,3251.00 7249.00,3749.00 6751.00,3749.00 6751.00,3251.00" color="255,0,108">
+        <tazSource id="-5762" weight="1.00"/>
+        <tazSink id="-5762" weight="1.00"/>
+        <tazSource id="-5802" weight="1.00"/>
+        <tazSink id="-5802" weight="1.00"/>
+        <tazSource id="5762" weight="1.00"/>
+        <tazSink id="5762" weight="1.00"/>
+        <tazSource id="5802" weight="1.00"/>
+        <tazSink id="5802" weight="1.00"/>
+    </taz>
+    <taz id="15_14" shape="7251.00,6751.00 7749.00,6751.00 7749.00,7249.00 7251.00,7249.00 7251.00,6751.00" color="147,0,255">
+        <tazSource id="-5351" weight="1.00"/>
+        <tazSink id="-5351" weight="1.00"/>
+        <tazSource id="-5571" weight="1.00"/>
+        <tazSink id="-5571" weight="1.00"/>
+        <tazSource id="-5627" weight="1.00"/>
+        <tazSink id="-5627" weight="1.00"/>
+        <tazSource id="5351" weight="1.00"/>
+        <tazSink id="5351" weight="1.00"/>
+        <tazSource id="5571" weight="1.00"/>
+        <tazSink id="5571" weight="1.00"/>
+        <tazSource id="5573" weight="1.00"/>
+        <tazSink id="5573" weight="1.00"/>
+        <tazSource id="5627" weight="1.00"/>
+        <tazSink id="5627" weight="1.00"/>
+    </taz>
+    <taz id="16_10" shape="7751.00,4751.00 8249.00,4751.00 8249.00,5249.00 7751.00,5249.00 7751.00,4751.00" color="133,255,0">
+        <tazSource id="-3752" weight="1.00"/>
+        <tazSink id="-3752" weight="1.00"/>
+        <tazSource id="3752" weight="1.00"/>
+        <tazSink id="3752" weight="1.00"/>
+    </taz>
+    <taz id="16_11" shape="7751.00,5251.00 8249.00,5251.00 8249.00,5749.00 7751.00,5749.00 7751.00,5251.00" color="100,255,0">
+        <tazSource id="-338" weight="1.00"/>
+        <tazSink id="-338" weight="1.00"/>
+        <tazSource id="-360" weight="1.00"/>
+        <tazSink id="-360" weight="1.00"/>
+        <tazSource id="-580" weight="1.00"/>
+        <tazSink id="-580" weight="1.00"/>
+        <tazSource id="338" weight="1.00"/>
+        <tazSink id="338" weight="1.00"/>
+        <tazSource id="360" weight="1.00"/>
+        <tazSink id="360" weight="1.00"/>
+        <tazSource id="580" weight="1.00"/>
+        <tazSink id="580" weight="1.00"/>
+    </taz>
+    <taz id="17_12" shape="8251.00,5751.00 8749.00,5751.00 8749.00,6249.00 8251.00,6249.00 8251.00,5751.00" color="213,0,255">
+        <tazSource id="-15" weight="1.00"/>
+        <tazSink id="-15" weight="1.00"/>
+        <tazSource id="-336" weight="1.00"/>
+        <tazSink id="-336" weight="1.00"/>
+        <tazSource id="-514" weight="1.00"/>
+        <tazSink id="-514" weight="1.00"/>
+        <tazSource id="15" weight="1.00"/>
+        <tazSink id="15" weight="1.00"/>
+        <tazSource id="336" weight="1.00"/>
+        <tazSink id="336" weight="1.00"/>
+        <tazSource id="514" weight="1.00"/>
+        <tazSink id="514" weight="1.00"/>
+    </taz>
+    <taz id="17_6" shape="8251.00,2751.00 8749.00,2751.00 8749.00,3249.00 8251.00,3249.00 8251.00,2751.00" color="255,1,0">
+        <tazSource id="-5545" weight="1.00"/>
+        <tazSink id="-5545" weight="1.00"/>
+        <tazSource id="5545" weight="1.00"/>
+        <tazSink id="5545" weight="1.00"/>
+    </taz>
+    <taz id="20_10" shape="9751.00,4751.00 10249.00,4751.00 10249.00,5249.00 9751.00,5249.00 9751.00,4751.00" color="249,0,255">
+        <tazSource id="-2443" weight="1.00"/>
+        <tazSink id="-2443" weight="1.00"/>
+        <tazSource id="-2538" weight="1.00"/>
+        <tazSink id="-2538" weight="1.00"/>
+        <tazSource id="2443" weight="1.00"/>
+        <tazSink id="2443" weight="1.00"/>
+        <tazSource id="2538" weight="1.00"/>
+        <tazSink id="2538" weight="1.00"/>
+        <tazSource id="2542" weight="1.00"/>
+        <tazSink id="2542" weight="1.00"/>
+    </taz>
+    <taz id="21_10" shape="10251.00,4751.00 10749.00,4751.00 10749.00,5249.00 10251.00,5249.00 10251.00,4751.00" color="67,255,0">
+        <tazSource id="-2542" weight="1.00"/>
+        <tazSink id="-2542" weight="1.00"/>
+        <tazSource id="-3042" weight="1.00"/>
+        <tazSink id="-3042" weight="1.00"/>
+        <tazSource id="-5823" weight="1.00"/>
+        <tazSink id="-5823" weight="1.00"/>
+        <tazSource id="3042" weight="1.00"/>
+        <tazSink id="3042" weight="1.00"/>
+        <tazSource id="5823" weight="1.00"/>
+        <tazSink id="5823" weight="1.00"/>
+    </taz>
+    <taz id="22_11" shape="10751.00,5251.00 11249.00,5251.00 11249.00,5749.00 10751.00,5749.00 10751.00,5251.00" color="218,0,255">
+        <tazSource id="-1448" weight="1.00"/>
+        <tazSink id="-1448" weight="1.00"/>
+        <tazSource id="-1454" weight="1.00"/>
+        <tazSink id="-1454" weight="1.00"/>
+        <tazSource id="-1579" weight="1.00"/>
+        <tazSink id="-1579" weight="1.00"/>
+        <tazSource id="1448" weight="1.00"/>
+        <tazSink id="1448" weight="1.00"/>
+        <tazSource id="1454" weight="1.00"/>
+        <tazSink id="1454" weight="1.00"/>
+        <tazSource id="1579" weight="1.00"/>
+        <tazSink id="1579" weight="1.00"/>
+    </taz>
+    <taz id="3_12" shape="1251.00,5751.00 1749.00,5751.00 1749.00,6249.00 1251.00,6249.00 1251.00,5751.00" color="0,198,255">
+        <tazSource id="-4918" weight="1.00"/>
+        <tazSink id="-4918" weight="1.00"/>
+        <tazSource id="-4920" weight="1.00"/>
+        <tazSink id="-4920" weight="1.00"/>
+        <tazSource id="4918" weight="1.00"/>
+        <tazSink id="4918" weight="1.00"/>
+        <tazSource id="4920" weight="1.00"/>
+        <tazSink id="4920" weight="1.00"/>
+    </taz>
+    <taz id="4_3" shape="1751.00,1251.00 2249.00,1251.00 2249.00,1749.00 1751.00,1749.00 1751.00,1251.00" color="0,255,74">
+        <tazSource id="-4533" weight="1.00"/>
+        <tazSink id="-4533" weight="1.00"/>
+        <tazSource id="4533" weight="1.00"/>
+        <tazSink id="4533" weight="1.00"/>
+    </taz>
+    <taz id="4_7" shape="1751.00,3251.00 2249.00,3251.00 2249.00,3749.00 1751.00,3749.00 1751.00,3251.00" color="255,0,87">
+        <tazSource id="-3566" weight="1.00"/>
+        <tazSink id="-3566" weight="1.00"/>
+        <tazSource id="-5522" weight="1.00"/>
+        <tazSink id="-5522" weight="1.00"/>
+        <tazSource id="5522" weight="1.00"/>
+        <tazSink id="5522" weight="1.00"/>
+    </taz>
+    <taz id="5_11" shape="2251.00,5251.00 2749.00,5251.00 2749.00,5749.00 2251.00,5749.00 2251.00,5251.00" color="14,255,0">
+        <tazSource id="-5747" weight="1.00"/>
+        <tazSink id="-5747" weight="1.00"/>
+        <tazSource id="5747" weight="1.00"/>
+        <tazSink id="5747" weight="1.00"/>
+    </taz>
+    <taz id="5_3" shape="2251.00,1251.00 2749.00,1251.00 2749.00,1749.00 2251.00,1749.00 2251.00,1251.00" color="255,97,0">
+        <tazSource id="-4527" weight="1.00"/>
+        <tazSink id="-4527" weight="1.00"/>
+        <tazSource id="4527" weight="1.00"/>
+        <tazSink id="4527" weight="1.00"/>
+    </taz>
+    <taz id="6_0" shape="2751.00,-249.00 3249.00,-249.00 3249.00,249.00 2751.00,249.00 2751.00,-249.00" color="102,255,0">
+        <tazSource id="-4923" weight="1.00"/>
+        <tazSink id="-4923" weight="1.00"/>
+        <tazSource id="4923" weight="1.00"/>
+        <tazSink id="4923" weight="1.00"/>
+    </taz>
+    <taz id="6_14" shape="2751.00,6751.00 3249.00,6751.00 3249.00,7249.00 2751.00,7249.00 2751.00,6751.00" color="167,0,255">
+        <tazSource id="-3168" weight="1.00"/>
+        <tazSink id="-3168" weight="1.00"/>
+        <tazSource id="3168" weight="1.00"/>
+        <tazSink id="3168" weight="1.00"/>
+    </taz>
+    <taz id="6_5" shape="2751.00,2251.00 3249.00,2251.00 3249.00,2749.00 2751.00,2749.00 2751.00,2251.00" color="154,255,0">
+        <tazSource id="-2577" weight="1.00"/>
+        <tazSink id="-2577" weight="1.00"/>
+        <tazSource id="-2619" weight="1.00"/>
+        <tazSink id="-2619" weight="1.00"/>
+        <tazSource id="-2693" weight="1.00"/>
+        <tazSink id="-2693" weight="1.00"/>
+        <tazSource id="2577" weight="1.00"/>
+        <tazSink id="2577" weight="1.00"/>
+        <tazSource id="2619" weight="1.00"/>
+        <tazSink id="2619" weight="1.00"/>
+        <tazSource id="2693" weight="1.00"/>
+        <tazSink id="2693" weight="1.00"/>
+    </taz>
+    <taz id="7_2" shape="3251.00,751.00 3749.00,751.00 3749.00,1249.00 3251.00,1249.00 3251.00,751.00" color="0,60,255">
+        <tazSource id="-4383" weight="1.00"/>
+        <tazSink id="-4383" weight="1.00"/>
+        <tazSource id="-4931" weight="1.00"/>
+        <tazSink id="-4931" weight="1.00"/>
+        <tazSource id="-4961" weight="1.00"/>
+        <tazSink id="-4961" weight="1.00"/>
+        <tazSource id="4383" weight="1.00"/>
+        <tazSink id="4383" weight="1.00"/>
+        <tazSource id="4931" weight="1.00"/>
+        <tazSink id="4931" weight="1.00"/>
+        <tazSource id="4961" weight="1.00"/>
+        <tazSink id="4961" weight="1.00"/>
+    </taz>
+    <taz id="8_4" shape="3751.00,1751.00 4249.00,1751.00 4249.00,2249.00 3751.00,2249.00 3751.00,1751.00" color="255,0,198">
+        <tazSource id="-5103" weight="1.00"/>
+        <tazSink id="-5103" weight="1.00"/>
+        <tazSource id="-5109" weight="1.00"/>
+        <tazSink id="-5109" weight="1.00"/>
+        <tazSource id="-5187" weight="1.00"/>
+        <tazSink id="-5187" weight="1.00"/>
+        <tazSource id="5103" weight="1.00"/>
+        <tazSink id="5103" weight="1.00"/>
+        <tazSource id="5109" weight="1.00"/>
+        <tazSink id="5109" weight="1.00"/>
+        <tazSource id="5187" weight="1.00"/>
+        <tazSink id="5187" weight="1.00"/>
+    </taz>
+    <taz id="8_9" shape="3751.00,4251.00 4249.00,4251.00 4249.00,4749.00 3751.00,4749.00 3751.00,4251.00" color="192,0,255">
+        <tazSource id="-4489" weight="1.00"/>
+        <tazSink id="-4489" weight="1.00"/>
+        <tazSource id="4489" weight="1.00"/>
+        <tazSink id="4489" weight="1.00"/>
+    </taz>
+    <taz id="9_11" shape="4251.00,5251.00 4749.00,5251.00 4749.00,5749.00 4251.00,5749.00 4251.00,5251.00" color="161,255,0">
+        <tazSource id="-2523" weight="1.00"/>
+        <tazSink id="-2523" weight="1.00"/>
+        <tazSource id="-5038" weight="1.00"/>
+        <tazSink id="-5038" weight="1.00"/>
+        <tazSource id="2523" weight="1.00"/>
+        <tazSink id="2523" weight="1.00"/>
+        <tazSource id="5038" weight="1.00"/>
+        <tazSink id="5038" weight="1.00"/>
+    </taz>
+    <taz id="9_7" shape="4251.00,3251.00 4749.00,3251.00 4749.00,3749.00 4251.00,3749.00 4251.00,3251.00" color="89,255,0">
+        <tazSource id="-1112" weight="1.00"/>
+        <tazSink id="-1112" weight="1.00"/>
+        <tazSource id="-1569" weight="1.00"/>
+        <tazSink id="-1569" weight="1.00"/>
+        <tazSource id="1112" weight="1.00"/>
+        <tazSink id="1112" weight="1.00"/>
+        <tazSource id="1569" weight="1.00"/>
+        <tazSink id="1569" weight="1.00"/>
+    </taz>
+</additional>

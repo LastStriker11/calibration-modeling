@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
+    <vType id="bus" length="15" maxSpeed="50" carFollowModel="Krauss" accel="2.0" decel="3.0" sigma="0.1" vClass="bus" guiShape="bus" />
+    <route id="bus_101" color="0,70,90" edges="-1376 -1376.338 -1356 1358 1378 1378.183 1432 1432.687 2256">
+        <stop busStop="bs_0" duration="15" />
+        <stop busStop="bs_1" duration="15" />
+        <stop busStop="bs_2" duration="15" />
+        <stop busStop="bs_3" duration="15" />
+    </route>
+    <flow id="bus_flow_101" type="bus" route="bus_101" begin="25500.0" end="37200.0" period="600" line="101" >
+        <param key="name" value="tfse22"/>
+    </flow>
+</routes>

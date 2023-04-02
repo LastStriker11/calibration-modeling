@@ -1,0 +1,92 @@
+<routes> 
+	 <vTypes> 
+	 	 <vType id="car1" accel="1.5" decel="8.0" sigma="0.5"  length="5" minGap="1.5" maxSpeed="45" speedFactor="1.2" speedDev="0.1" guishape="passenger" /> 
+	 	 <vType id="car2" accel="1.2" decel="7.0" sigma="0.5" length="5" minGap="2.5" maxSpeed="38" speedFactor="1.0" speedDev="0.1" guishape="passenger" /> 
+	 	 <vType id="car3" accel="1.5" decel="3.0" sigma="0.5" length="5" minGap="1.0" maxSpeed="45" speedFactor="1.2" speedDev="0.1" guishape="passenger" /> 
+	 	 <vType id="car4" accel="1.2" decel="3.0" sigma="0.5" minGap="1.0" maxSpeed="38" speedFactor="1.0" speedDev="0.1" guishape="passenger" /> 
+	 	 <vType id="truck1" accel="0.8" decel="5.0" sigma="0.5"  length="10" minGap="3.0" maxSpeed="25" speedFactor="0.8" speedDev="0.1" guishape="delivery" /> 
+	 	 <vType id="truck2" accel="0.8" decel="3.0" sigma="0.5" length="10" minGap="1.0" maxSpeed="25" speedFactor="0.8" speedDev="0.1" guishape="delivery" /> 
+	 </vTypes> 
+	 	 <route id="r1" color="1,1,0" edges="freeway_upstream freeway_merge freeway_downstream"/> 
+	 	 <route id="r2" color="1,1,0" edges="Entry Entry.249 freeway_merge freeway_downstream"/> 
+	 <flows> 
+	 	 	 <flow id="car_1_HW_26100" route="r1" begin="25200" end="26100" vehsPerHour="108.0" type="car1" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="car_2_HW_26100" route="r1" begin="25200" end="26100" vehsPerHour="120.0" type="car2" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="truck_1_HW_26100" route="r1" begin="25200" end="26100" vehsPerHour="12.0" type="truck1" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="car_1_OR_26100" route="r2" begin="25200" end="26100" vehsPerHour="60.0" type="car3" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="car_2_OR_26100" route="r2" begin="25200" end="26100" vehsPerHour="72.0" type="car4" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="truck_1_OR_26100" route="r2" begin="25200" end="26100" vehsPerHour="12.0" type="truck2" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="car_1_HW_27000" route="r1" begin="26100" end="27000" vehsPerHour="324.0" type="car1" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="car_2_HW_27000" route="r1" begin="26100" end="27000" vehsPerHour="360.0" type="car2" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="truck_1_HW_27000" route="r1" begin="26100" end="27000" vehsPerHour="36.0" type="truck1" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="car_1_OR_27000" route="r2" begin="26100" end="27000" vehsPerHour="180.0" type="car3" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="car_2_OR_27000" route="r2" begin="26100" end="27000" vehsPerHour="216.0" type="car4" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="truck_1_OR_27000" route="r2" begin="26100" end="27000" vehsPerHour="36.0" type="truck2" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="car_1_HW_27900" route="r1" begin="27000" end="27900" vehsPerHour="540.0" type="car1" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="car_2_HW_27900" route="r1" begin="27000" end="27900" vehsPerHour="600.0" type="car2" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="truck_1_HW_27900" route="r1" begin="27000" end="27900" vehsPerHour="60.0" type="truck1" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="car_1_OR_27900" route="r2" begin="27000" end="27900" vehsPerHour="300.0" type="car3" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="car_2_OR_27900" route="r2" begin="27000" end="27900" vehsPerHour="360.0" type="car4" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="truck_1_OR_27900" route="r2" begin="27000" end="27900" vehsPerHour="60.0" type="truck2" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="car_1_HW_28800" route="r1" begin="27900" end="28800" vehsPerHour="756.0" type="car1" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="car_2_HW_28800" route="r1" begin="27900" end="28800" vehsPerHour="840.0" type="car2" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="truck_1_HW_28800" route="r1" begin="27900" end="28800" vehsPerHour="84.0" type="truck1" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="car_1_OR_28800" route="r2" begin="27900" end="28800" vehsPerHour="420.0" type="car3" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="car_2_OR_28800" route="r2" begin="27900" end="28800" vehsPerHour="504.0" type="car4" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="truck_1_OR_28800" route="r2" begin="27900" end="28800" vehsPerHour="84.0" type="truck2" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="car_1_HW_29700" route="r1" begin="28800" end="29700" vehsPerHour="810.0" type="car1" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="car_2_HW_29700" route="r1" begin="28800" end="29700" vehsPerHour="900.0" type="car2" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="truck_1_HW_29700" route="r1" begin="28800" end="29700" vehsPerHour="90.0" type="truck1" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="car_1_OR_29700" route="r2" begin="28800" end="29700" vehsPerHour="450.0" type="car3" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="car_2_OR_29700" route="r2" begin="28800" end="29700" vehsPerHour="540.0" type="car4" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="truck_1_OR_29700" route="r2" begin="28800" end="29700" vehsPerHour="90.0" type="truck2" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="car_1_HW_30600" route="r1" begin="29700" end="30600" vehsPerHour="1080.0" type="car1" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="car_2_HW_30600" route="r1" begin="29700" end="30600" vehsPerHour="1200.0" type="car2" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="truck_1_HW_30600" route="r1" begin="29700" end="30600" vehsPerHour="120.0" type="truck1" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="car_1_OR_30600" route="r2" begin="29700" end="30600" vehsPerHour="600.0" type="car3" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="car_2_OR_30600" route="r2" begin="29700" end="30600" vehsPerHour="720.0" type="car4" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="truck_1_OR_30600" route="r2" begin="29700" end="30600" vehsPerHour="120.0" type="truck2" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="car_1_HW_31500" route="r1" begin="30600" end="31500" vehsPerHour="1350.0" type="car1" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="car_2_HW_31500" route="r1" begin="30600" end="31500" vehsPerHour="1400" type="car2" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="truck_1_HW_31500" route="r1" begin="30600" end="31500" vehsPerHour="150.0" type="truck1" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="car_1_OR_31500" route="r2" begin="30600" end="31500" vehsPerHour="750.0" type="car3" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="car_2_OR_31500" route="r2" begin="30600" end="31500" vehsPerHour="900.0" type="car4" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="truck_1_OR_31500" route="r2" begin="30600" end="31500" vehsPerHour="150.0" type="truck2" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="car_1_HW_32400" route="r1" begin="31500" end="32400" vehsPerHour="1400" type="car1" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="car_2_HW_32400" route="r1" begin="31500" end="32400" vehsPerHour="1400" type="car2" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="truck_1_HW_32400" route="r1" begin="31500" end="32400" vehsPerHour="180.0" type="truck1" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="car_1_OR_32400" route="r2" begin="31500" end="32400" vehsPerHour="900.0" type="car3" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="car_2_OR_32400" route="r2" begin="31500" end="32400" vehsPerHour="1080.0" type="car4" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="truck_1_OR_32400" route="r2" begin="31500" end="32400" vehsPerHour="180.0" type="truck2" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="car_1_HW_33300" route="r1" begin="32400" end="33300" vehsPerHour="1400" type="car1" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="car_2_HW_33300" route="r1" begin="32400" end="33300" vehsPerHour="1400" type="car2" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="truck_1_HW_33300" route="r1" begin="32400" end="33300" vehsPerHour="210.0" type="truck1" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="car_1_OR_33300" route="r2" begin="32400" end="33300" vehsPerHour="1050.0" type="car3" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="car_2_OR_33300" route="r2" begin="32400" end="33300" vehsPerHour="1260.0" type="car4" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="truck_1_OR_33300" route="r2" begin="32400" end="33300" vehsPerHour="210.0" type="truck2" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="car_1_HW_34200" route="r1" begin="33300" end="34200" vehsPerHour="1400" type="car1" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="car_2_HW_34200" route="r1" begin="33300" end="34200" vehsPerHour="1400" type="car2" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="truck_1_HW_34200" route="r1" begin="33300" end="34200" vehsPerHour="252.0" type="truck1" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="car_1_OR_34200" route="r2" begin="33300" end="34200" vehsPerHour="1260.0" type="car3" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="car_2_OR_34200" route="r2" begin="33300" end="34200" vehsPerHour="1400" type="car4" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="truck_1_OR_34200" route="r2" begin="33300" end="34200" vehsPerHour="252.0" type="truck2" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="car_1_HW_35100" route="r1" begin="34200" end="35100" vehsPerHour="1400" type="car1" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="car_2_HW_35100" route="r1" begin="34200" end="35100" vehsPerHour="1400" type="car2" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="truck_1_HW_35100" route="r1" begin="34200" end="35100" vehsPerHour="312.0" type="truck1" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="car_1_OR_35100" route="r2" begin="34200" end="35100" vehsPerHour="1400" type="car3" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="car_2_OR_35100" route="r2" begin="34200" end="35100" vehsPerHour="1400" type="car4" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="truck_1_OR_35100" route="r2" begin="34200" end="35100" vehsPerHour="312.0" type="truck2" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="car_1_HW_36000" route="r1" begin="35100" end="36000" vehsPerHour="1400" type="car1" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="car_2_HW_36000" route="r1" begin="35100" end="36000" vehsPerHour="1400" type="car2" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="truck_1_HW_36000" route="r1" begin="35100" end="36000" vehsPerHour="372.0" type="truck1" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="car_1_OR_36000" route="r2" begin="35100" end="36000" vehsPerHour="1400" type="car3" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="car_2_OR_36000" route="r2" begin="35100" end="36000" vehsPerHour="1400" type="car4" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="truck_1_OR_36000" route="r2" begin="35100" end="36000" vehsPerHour="372.0" type="truck2" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="car_1_HW_36900" route="r1" begin="36000" end="36900" vehsPerHour="1400" type="car1" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="car_2_HW_36900" route="r1" begin="36000" end="36900" vehsPerHour="1400" type="car2" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="truck_1_HW_36900" route="r1" begin="36000" end="36900" vehsPerHour="432.0" type="truck1" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="car_1_OR_36900" route="r2" begin="36000" end="36900" vehsPerHour="1400" type="car3" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="car_2_OR_36900" route="r2" begin="36000" end="36900" vehsPerHour="1400" type="car4" departLane="random" departPos="base" departSpeed="max"/> 
+	 	 	 <flow id="truck_1_OR_36900" route="r2" begin="36000" end="36900" vehsPerHour="432.0" type="truck2" departLane="random" departPos="base" departSpeed="max"/> 
+	 </flows> 
+</routes> 

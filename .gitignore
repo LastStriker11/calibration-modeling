@@ -1,7 +1,9 @@
+# stable version
+calibration-modeling.zip
+
 # network and cache
-networks/
 network_aggregate/
-od_calibration/cache/
+cache/
 
 # data files
 *.csv
