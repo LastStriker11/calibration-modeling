@@ -164,19 +164,8 @@ class DataPreparation(object):
             old_loc = self.paths['measurements']+file
             new_loc = self.paths['cache']+file
             shutil.copyfile(old_loc, new_loc)            
-        
-    def load_data(self):
-        '''
-        Load the od_prior estimates and traffic measurements.
-
-        Returns
-        -------
-        data : TYPE
-            DESCRIPTION.
-        od_prior : TYPE
-            DESCRIPTION.
-
-        '''
+    
+    def load_measurement(self):
         start = int(float(self.sumo_var["starttime"]))
         end = int(float(self.sumo_var['endtime']))
         cols = list(range(start, end))
@@ -201,7 +190,10 @@ class DataPreparation(object):
                 temp_data.set_index('label', inplace=True)
                 data = pd.concat([data, temp_data], axis=1)
             data.columns = cols
-        # prior od estimates
+        data.index = data.index.astype(str) # in some networks, it could raise errors
+        return data
+    
+    def load_od(self):
         od_prior = pd.DataFrame()
         for i in range(len(self.sumo_var["od_prior"])):
             temp_od = pd.read_csv(self.paths["cache"] + self.sumo_var["od_prior"][i], sep='\s+', header=None, skiprows=5)
@@ -209,7 +201,24 @@ class DataPreparation(object):
         od_prior.columns = cols_inter
         od_prior = pd.concat([temp_od.iloc[:,:2], od_prior], axis=1)
         data.index = data.index.astype(str) # in some networks, it could raise errors
+        return od_prior
+        
+    def load_data(self):
+        '''
+        Load the od_prior estimates and traffic measurements.
+
+        Returns
+        -------
+        data : TYPE
+            DESCRIPTION.
+        od_prior : TYPE
+            DESCRIPTION.
+
+        '''
+        data = self.load_measurement()
+        od_prior = self.load_od()
         return data, od_prior
+        
 
 
         
