@@ -115,8 +115,11 @@ class DataPreparation(object):
         '''
         self.sumo_var['od_prior'] = [f for f in os.listdir(self.paths['demand'])]
         self.sumo_var['od_prior'].sort()
-        self.sumo_var['truedata'] = [f for f in os.listdir(self.paths['measurements'])]
-        self.sumo_var['truedata'].sort()
+        try:
+            self.sumo_var['truedata'] = [f for f in os.listdir(self.paths['measurements'])]
+            self.sumo_var['truedata'].sort()
+        except:
+            self.sumo_var['truedata'] = 0
         
         # create the folder to store the scenario files
         # if os.path.exists(self.paths["cache"]):
@@ -134,8 +137,9 @@ class DataPreparation(object):
         endSim = int(integ*60*60 + fract*60)
         
         self.sumo_var['beginSimTime'] =  str(beginSim)
-        self.sumo_var['endSimTime']   =  str(endSim+500)
-        
+        self.sumo_var['endSimTime']   =  str(endSim)
+    
+    def copy_cache(self):
         '''
          copy relevant files for SUMO simulation to a folder under the temp directory,
          so that all output files will be located in a same folder which won't make the
@@ -160,16 +164,22 @@ class DataPreparation(object):
             new_loc = self.paths['cache']+file
             shutil.copyfile(old_loc, new_loc)
         # truedata
-        for file in self.sumo_var['truedata']:
-            old_loc = self.paths['measurements']+file
-            new_loc = self.paths['cache']+file
-            shutil.copyfile(old_loc, new_loc)            
-    
-    def load_measurement(self):
+        if self.sumo_var['truedata'] != 0:
+            for file in self.sumo_var['truedata']:
+                old_loc = self.paths['measurements']+file
+                new_loc = self.paths['cache']+file
+                shutil.copyfile(old_loc, new_loc)            
+
+    def col_name(self, df):
         start = int(float(self.sumo_var["starttime"]))
         end = int(float(self.sumo_var['endtime']))
         cols = list(range(start, end))
         cols_inter = list(np.arange(start, end, self.sumo_var['interval']))
+        df.columns = cols_inter
+        return df
+
+    def load_measurement(self):
+        
         data = pd.DataFrame()
         # for counts
         if self.sumo_var['objective'] == 'counts':
@@ -177,7 +187,7 @@ class DataPreparation(object):
                 temp_data = pd.read_csv(self.paths["cache"] + self.sumo_var['truedata'][i], header=None)
                 temp_data.set_index(0, inplace=True)
                 data = pd.concat([data, temp_data], axis=1)
-            data.columns = cols_inter
+            data = self.col_name(data)
             #@@@@
             data = data[(data.T!=0).any()]
             #@@@@
@@ -189,7 +199,7 @@ class DataPreparation(object):
                 temp_data.drop([0,1], axis=1, inplace=True)
                 temp_data.set_index('label', inplace=True)
                 data = pd.concat([data, temp_data], axis=1)
-            data.columns = cols
+            data = self.col_name(data)
         data.index = data.index.astype(str) # in some networks, it could raise errors
         return data
     
@@ -198,9 +208,8 @@ class DataPreparation(object):
         for i in range(len(self.sumo_var["od_prior"])):
             temp_od = pd.read_csv(self.paths["cache"] + self.sumo_var["od_prior"][i], sep='\s+', header=None, skiprows=5)
             od_prior = pd.concat([od_prior, temp_od.iloc[:,2]], axis=1)
-        od_prior.columns = cols_inter
+        od_prior = self.col_name(od_prior)
         od_prior = pd.concat([temp_od.iloc[:,:2], od_prior], axis=1)
-        data.index = data.index.astype(str) # in some networks, it could raise errors
         return od_prior
         
     def load_data(self):

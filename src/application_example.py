@@ -37,6 +37,7 @@ paras = dict(n_gen=1,
 # prepare paths and data
 dp = DataPreparation(paths, sumo_var)
 dp.load_path()
+dp.copy_cache()
 data_true, od_prior = dp.load_data()
 
 calibrate = PC_SPSA(paths, sumo_var, paras, od_prior, data_true)
